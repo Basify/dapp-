@@ -58,7 +58,7 @@ export const Features = () => {
                 <Heading size="lg" textAlign="center" color="twitter.500" fontWeight={500}>
                   {valuesObject?.heading}
                 </Heading>
-                <Text textAlign="center">{valuesObject?.subHeading}</Text>
+                <Text textAlign="center" fontWeight={100}>{valuesObject?.subHeading}</Text>
               </VStack>
             </CenterComponent>
           );

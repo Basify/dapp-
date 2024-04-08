@@ -9,10 +9,14 @@ import {
 } from '../../../hooks/ReferralHooks';
 import { PageWrapper } from '../../../util/PageWrapper';
 import { HeadingComponent } from '../../../util/Ui';
+import { bsc } from 'viem/chains';
 
 function WeeklyReward() {
-  const weeklyRewardsToBeDistributed = useGetWeeklyRewardToBeDistributed();
-  const useCurrentNetwork = supportedNetworkInfo[56];
+  const weeklyRewardsToBeDistributed = useGetWeeklyRewardToBeDistributed(
+    bsc.id
+  );
+  console.log(weeklyRewardsToBeDistributed);
+  const useCurrentNetwork = supportedNetworkInfo[bsc.id];
   const nativePrice = useNativePrice(useCurrentNetwork?.priceOracleAddress!);
 
   return (
@@ -25,9 +29,7 @@ function WeeklyReward() {
         <HStack>
           <Heading>
             {Number(
-              (Number(weeklyRewardsToBeDistributed?.data?.rewardValue) /
-                10 ** 18) *
-                (Number(nativePrice ?? 0) / 10 ** 18)
+              Number(weeklyRewardsToBeDistributed?.data?.rewardValue) / 10 ** 18
             )?.toFixed(2)}
           </Heading>
           <Heading color="orange.500">USDT</Heading>

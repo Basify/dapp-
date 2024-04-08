@@ -4,7 +4,6 @@ import { shortenAddress } from '@usedapp/core';
 import { jsNumberForAddress } from 'react-jazzicon';
 import Jazzicon from 'react-jazzicon/dist/Jazzicon';
 import { useAccount } from 'wagmi';
-import { WalletConnectLogoSVG } from '../assets';
 import { useWeb3Modal } from '@web3modal/wagmi/react';
 
 export const ConnectWalletButton = ({
@@ -36,9 +35,9 @@ export const ConnectWalletButton = ({
           )
         ) : (
           <Image
-            src={WalletConnectLogoSVG}
+            src={'./walletIcons/walletConnect.svg'}
             alt="Wallet Connect Icon"
-            width={30}
+            width={22}
           ></Image>
         )
       }

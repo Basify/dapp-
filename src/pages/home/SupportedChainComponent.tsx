@@ -5,7 +5,6 @@ import {
   VStack,
   useBreakpointValue,
 } from '@chakra-ui/react';
-import { BUSDLogoSVG, USDTLogoSVG } from '../../assets';
 import { CenterComponent, HeadingComponent } from '../../util/Ui';
 import { PageWrapper } from '../../util/PageWrapper';
 

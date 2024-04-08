@@ -1,6 +1,5 @@
-import { useWeb3Modal } from '@web3modal/wagmi/react';
-import { WalletConnectLogoSVG } from '../assets';
 import { Button, Image } from '@chakra-ui/react';
+import { useWeb3Modal } from '@web3modal/wagmi/react';
 // import { useWeb3Modal } from '@web3modal/react';
 
 function SwitchNetworkButton() {
@@ -9,7 +8,7 @@ function SwitchNetworkButton() {
     <Button
       leftIcon={
         <Image
-          src={WalletConnectLogoSVG}
+          src={"./walletIcons/walletConnect.svg"}
           alt="Wallet Connect Logo"
           width={30}
         ></Image>

@@ -29,7 +29,6 @@ import {
   useWaitForTransactionReceipt,
   useWriteContract,
 } from 'wagmi';
-import { BNBLogoSVG } from '../../assets';
 import { AddressZero } from '../../constants/ContractAddress';
 import { CurrentNetworkInfo } from '../../constants/SupportedNetworkInfo';
 import { useGetUserTeam } from '../../hooks/ReferralHooks';
@@ -184,7 +183,7 @@ function RegistrationUI({
                 </Heading>
               </Stack>
               <Spacer />
-              <Image src={BNBLogoSVG} alt="BNB Logo" boxSize={14}></Image>
+              <Image src={"./chainIcons/bscSmartChainLogo.svg"} alt="BNB Logo" boxSize={14}></Image>
             </HStack>
           </Tag>
 
@@ -266,7 +265,7 @@ function RegistrationUI({
               onConfirm={handleTransaction}
               transactionName="Register"
               outCurrencyObject={{
-                logo: BNBLogoSVG,
+                logo: "./chainIcons/bscSmartChainLogo.svg",
                 symbol: 'BNB',
               }}
               outCurrencyValue={valueInDecimals}

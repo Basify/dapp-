@@ -10,11 +10,11 @@ import {
 } from '@chakra-ui/react';
 import { IconType } from 'react-icons';
 import { BsFillCalendar2HeartFill, BsFire } from 'react-icons/bs';
-import { FaChartLine, FaUsers } from 'react-icons/fa';
+import { FaChartLine } from 'react-icons/fa';
 import { MdGroups3 } from 'react-icons/md';
-import { CenterComponent, HeadingComponent } from '../../../util/Ui';
 import { Link } from 'react-router-dom';
 import { PageWrapper } from '../../../util/PageWrapper';
+import { CenterComponent, HeadingComponent } from '../../../util/Ui';
 
 const BoxComponent = ({
   icon,
@@ -47,7 +47,7 @@ const BoxComponent = ({
         >
           {value}%
         </Heading>
-        <Heading size="sm" textAlign="center">
+        <Heading size="sm" textAlign="center" fontWeight={100}>
           {text}
         </Heading>
       </VStack>

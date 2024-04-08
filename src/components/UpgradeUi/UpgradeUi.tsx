@@ -25,7 +25,6 @@ import {
   useWaitForTransactionReceipt,
   useWriteContract
 } from 'wagmi';
-import { BNBLogoSVG } from '../../assets';
 import { CurrentNetworkInfo } from '../../constants/SupportedNetworkInfo';
 // import {
 //   UpgradePlanInfoValueType
@@ -175,7 +174,7 @@ function UpgradeUI({
                 </Heading>
               </Stack>
               <Spacer />
-              <Image src={BNBLogoSVG} alt="BNB Logo" boxSize={14}></Image>
+              <Image src={"./chainIcons/bscSmartChainLogo.svg"} alt="BNB Logo" boxSize={14}></Image>
             </HStack>
           </Tag>
 
@@ -217,7 +216,7 @@ function UpgradeUI({
               onConfirm={handleTransaction}
               transactionName="Upgrade"
               outCurrencyObject={{
-                logo: BNBLogoSVG,
+                logo: "./chainIcons/bscSmartChainLogo.svg",
                 symbol: 'BNB',
               }}
               outCurrencyValue={valueInDecimals}

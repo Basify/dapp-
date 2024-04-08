@@ -90,7 +90,7 @@ export const Roadmap = () => {
                       return (
                         <HStack key={keyDis}>
                           <Icon as={BiRadioCircleMarked}></Icon>
-                          <Text>{discription}</Text>
+                          <Text fontWeight={100}>{discription}</Text>
                         </HStack>
                       );
                     })}

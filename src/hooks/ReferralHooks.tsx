@@ -201,22 +201,21 @@ export const useGetUserTeam = (userAddress: `0x${string}` | undefined) => {
   return object;
 };
 
-export type UserWeeklyRewardToBeDistributedType = {
-  rewardValue: bigint;
-  remianingTime: bigint;
-  endTime: bigint;
-};
-
-export const useGetWeeklyRewardToBeDistributed = () => {
+export const useGetWeeklyRewardToBeDistributed = (chainId?: number) => {
   const value = useReferralContractReads({
     functionName: 'getWeeklyRewardToBeDistributed',
+    chainId: chainId,
   });
+
+  const data = value?.data as unknown as bigint[] | undefined;
 
   const object = {
     value: value,
-    data: value?.isSuccess
-      ? (value?.data as unknown as UserWeeklyRewardToBeDistributedType)
-      : undefined,
+    data: {
+      rewardValue: data?.[0],
+      remianingTime: data?.[1],
+      endTime: data?.[2],
+    },
   };
 
   return object;
