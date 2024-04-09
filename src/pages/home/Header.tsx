@@ -38,7 +38,7 @@ export const Header = () => {
         direction={['column', 'column', 'column', 'row']}
         justify="center"
         align="center"
-        spacing={[44, 44, 44, 0]}
+        spacing={[20, 20, 20, 0]}
       >
         <ParallaxProvider>
           <Parallax speed={-20}>

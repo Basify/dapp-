@@ -103,15 +103,17 @@ export const PlanDiscriptionComponent = () => {
       <Box maxW={500} minW={250} w="full" px={10}>
         <Link to="/registration">
           <Button
-            w="full"
-            rightIcon={<ChevronRightIcon />}
-            fontSize="lg"
-            h={20}
+            w={[250, 300, 400]}
+            h={16}
             borderRadius={20}
+            rightIcon={<ChevronRightIcon />}
+            zIndex={1}
             borderBottomWidth="thick"
+            variant="outline"
+            fontWeight={900}
             colorScheme="twitter"
           >
-            LAUNCH APP
+            PARTICIPATE NOW
           </Button>
         </Link>
       </Box>
