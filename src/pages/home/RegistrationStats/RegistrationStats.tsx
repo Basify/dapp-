@@ -1,4 +1,5 @@
 import {
+  Flex,
   HStack,
   Heading,
   Icon,
@@ -56,7 +57,17 @@ export const RegistrationStats = () => {
         heading={`Protocol that love`}
         gradientHeading="COMMUNITY"
       ></HeadingComponent>
-      <Wrap w="full" p={5} justify="center" align="center" spacing={[10, 20]}>
+      {/* <Flex w="full" maxW="6xl" direction="column">
+        <Heading fontSize={["4xl", '5xl', '6xl', '7xl']}>Simple, Secured</Heading>
+        <Heading
+          fontSize={["4xl", '5xl', '6xl', '7xl']}
+          bgGradient="linear(to-r, twitter.500, yellow.500, pink.500)"
+          bgClip="text"
+        >
+          For Community
+        </Heading>
+      </Flex> */}
+      <Wrap w="full" p={5} justify="center" align="center" spacing={5}>
         {registrationValues?.map((valuesObject, key) => {
           return (
             <CenterComponent
@@ -81,9 +92,7 @@ export const RegistrationStats = () => {
                     {valuesObject?.currency && valuesObject?.currency}
                   </Heading>
                 </VStack>
-                <Text fontWeight={100}>
-                  {valuesObject?.name}
-                </Text>
+                <Text fontWeight={100}>{valuesObject?.name}</Text>
                 {/* <Heading size="sm" textAlign="center">
                   {valuesObject?.name}
                 </Heading> */}

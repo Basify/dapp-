@@ -15,7 +15,7 @@ import { PageWrapper } from '../../../util/PageWrapper';
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 export const NetworkJoining = () => {
-  const chartBorderColor = useColorModeValue('white', 'black');
+  const chartBorderColor = useColorModeValue('white', '#1A202C');
   const data = {
     labels: [
       '$15 | Referral Rewards',

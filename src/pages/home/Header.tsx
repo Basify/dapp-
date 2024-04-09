@@ -27,11 +27,55 @@ export const Header = () => {
       gap={[150, 100, 50, 0]}
       // overflow="hidden"
       // maxH="100vh"
-      py={50}
+      // pt={50}
       maxW={1500}
+      px={5}
     >
+      <Stack
+        w="full"
+        // minH="100vh"
+        py={[50]}
+        direction={['column', 'column', 'column', 'row']}
+        justify="center"
+        align="center"
+        spacing={[44, 44, 44, 0]}
+      >
+        <ParallaxProvider>
+          <Parallax speed={-20}>
+            <Stack w="full" px={[5, 10]} minH="40vh">
+              <HeaderHeadingComponent />
+            </Stack>
+          </Parallax>
+        </ParallaxProvider>
+        <MotionFlex
+          w="full"
+          maxW={500}
+          h="max-content"
+          // minW={600}
+          // maxW={1200}
+          // zIndex={1}
+          // justifySelf="flex-end"
+          // alignSelf="flex-end"
+          // initial={{
+          //   y: -200,
+          //   x: 200,
+          // }}
+          animate={{
+            y: [10, 0, 10],
+          }}
+          transition={{
+            repeat: Infinity,
+            duration: 3,
+          }}
+          // boxSize={[350, 400, 500, 600]}
+          // bgColor="red"
+          align="flex-start"
+        >
+          <HeaderImage></HeaderImage>
+        </MotionFlex>
+      </Stack>
       {/* <Particles></Particles> */}
-      <ParallaxProvider>
+      {/* <ParallaxProvider>
         <Parallax speed={-30}>
           <Stack w="full" px={[5, 10]} minH="40vh">
             <HeaderHeadingComponent />
@@ -58,7 +102,7 @@ export const Header = () => {
         }}
       >
         <HeaderImage></HeaderImage>
-      </MotionFlex>
+      </MotionFlex> */}
     </Flex>
   );
 };

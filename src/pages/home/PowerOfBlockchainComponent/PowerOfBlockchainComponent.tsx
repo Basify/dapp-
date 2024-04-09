@@ -11,7 +11,9 @@ import {
 import { IconType } from 'react-icons';
 import { BsBox, BsShieldCheck } from 'react-icons/bs';
 import { GiCubes, GiWineGlass } from 'react-icons/gi';
+import { TbUserHeart } from 'react-icons/tb';
 import { PageWrapper } from '../../../util/PageWrapper';
+import { FaBookOpenReader } from 'react-icons/fa6';
 
 const TagComponent = ({
   icon,
@@ -36,7 +38,9 @@ const TagComponent = ({
 
 export const PowerOfBlockchainComponent = () => {
   return (
-    <PageWrapper>
+    <PageWrapper style={{
+      spacing: 10
+    }}>
       <HeadingComponent
         heading="Build with the power of"
         gradientHeading="BLOCKCHAIN"
@@ -52,14 +56,16 @@ export const PowerOfBlockchainComponent = () => {
           All smart contracts are verified on block explorers & open source.
         </Text>
       </Container>
-      <Image src={'./bgBlockchain.svg'} maxW={"4xl"}></Image>
-
-      <Wrap spacing={10} align="center" justify="center">
+      
+      <Wrap spacing={5} align="center" justify="center">
         <TagComponent icon={GiWineGlass} heading="Transparent"></TagComponent>
         <TagComponent icon={BsShieldCheck} heading="Secured"></TagComponent>
-        <TagComponent icon={BsBox} heading="Open Source"></TagComponent>
+        <TagComponent icon={FaBookOpenReader} heading="Open Source"></TagComponent>
+        <TagComponent icon={TbUserHeart} heading="Community Driven"></TagComponent>
+        <TagComponent icon={BsBox} heading="Fully Decentralized"></TagComponent>
         {/* <TagComponent icon={FaLock} heading="Renounced"></TagComponent> */}
       </Wrap>
+      <Image src={'./bgBlockchain.svg'} maxW={"4xl"}></Image>
     </PageWrapper>
   );
 };

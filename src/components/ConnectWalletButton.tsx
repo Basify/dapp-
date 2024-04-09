@@ -45,7 +45,7 @@ export const ConnectWalletButton = ({
       borderRadius="xl"
       size={['sm', 'md']}
     >
-      {address ? shortenAddress(userAddress ?? address) : conectWalletText}
+      {address ? shortenAddress(userAddress ?? address) : 'Connect Wallet'}
     </Button>
   );
 };

@@ -11,8 +11,8 @@ import { Link } from 'react-router-dom';
 import { projectName } from '../../../constants/SupportedNetworkInfo';
 
 export const HeaderHeadingComponent = () => {
-  const mainHeading = 'POWERFUL CRYPTO REWARD NETWORK';
-  const secondaryHeading = `A fully #decentralised protocol that distributes rewards for joining the ${projectName} network`;
+  const mainHeading = `POWERFUL CRYPTO REWARD NETWORK`;
+  // const secondaryHeading = ;
   return (
     <Stack spacing={5} maxW="3xl">
       <Text
@@ -22,6 +22,8 @@ export const HeaderHeadingComponent = () => {
         fontFamily="heading"
         lineHeight={1}
         color={useColorModeValue('twitter.500', 'twitter.400')}
+        bgGradient="linear(to-r, twitter.500, yellow.500, pink.500)"
+        bgClip="text"
       >
         {mainHeading}
       </Text>
@@ -33,10 +35,13 @@ export const HeaderHeadingComponent = () => {
         maxW="2xl"
         fontWeight={100}
       >
-        {secondaryHeading}
+        A fully #decentralised protocol that distributes rewards for joining the{' '}
+        <Heading as="span" color="pink.500">
+          {projectName}
+        </Heading>{' '}
+        network
       </Heading>
       <Link to="/registration">
-        <button></button>
         <Button
           w={[250, 300, 400]}
           h={16}

@@ -8,7 +8,7 @@ export const App = () => (
     w="full"
     direction="column"
     bgColor={useColorModeValue('white', 'black')}
-    bgImage={'./appBg.png'}
+    // bgImage={'./appBg.png'}
     bgSize="cover"
   >
     <Nav></Nav>
