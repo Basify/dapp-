@@ -7,6 +7,7 @@ import {
   useColorModeValue,
 } from '@chakra-ui/react';
 import { ReactNode } from 'react';
+import { Parallax } from 'react-scroll-parallax';
 
 export const bgGradient = {
   heading: 'linear(to-r, red.500, yellow.500, green.500)',
@@ -32,7 +33,7 @@ export const HeadingComponent = ({
         fontSize={['4xl', '5xl', '6xl', '7xl']}
         // bgGradient={`linear(to-r, red.400, yellow.500, green.400)`}
         // bgClip="text"
-        color={useColorModeValue("twitter.500", "twitter.400")}
+        color={useColorModeValue('twitter.500', 'twitter.400')}
       >
         {gradientHeading}
       </Text>

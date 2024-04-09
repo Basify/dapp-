@@ -40,13 +40,11 @@ export const Header = () => {
         align="center"
         spacing={[20, 20, 20, 0]}
       >
-        <ParallaxProvider>
-          <Parallax speed={-20}>
-            <Stack w="full" px={[5, 10]} minH="40vh">
-              <HeaderHeadingComponent />
-            </Stack>
-          </Parallax>
-        </ParallaxProvider>
+        <Parallax speed={-20}>
+          <Stack w="full" px={[5, 10]} minH="40vh">
+            <HeaderHeadingComponent />
+          </Stack>
+        </Parallax>
         <MotionFlex
           w="full"
           maxW={500}

@@ -17,6 +17,7 @@ import { defaultChainId } from '../../../constants/SupportedNetworkInfo';
 import { useGetRegistrationsStats } from '../../../hooks/ReferralHooks';
 import { PageWrapper } from '../../../util/PageWrapper';
 import { CenterComponent, HeadingComponent } from '../../../util/Ui';
+import { Parallax } from 'react-scroll-parallax';
 
 export const RegistrationStats = () => {
   const registrationStats = useGetRegistrationsStats(defaultChainId);
@@ -70,34 +71,36 @@ export const RegistrationStats = () => {
       <Wrap w="full" p={5} justify="center" align="center" spacing={5}>
         {registrationValues?.map((valuesObject, key) => {
           return (
-            <CenterComponent
-              style={{
-                minH: 400,
-                minW: 250,
-              }}
-            >
-              <VStack spacing={5}>
-                <Icon
-                  as={valuesObject?.icon}
-                  boxSize={20}
-                  color={valuesObject?.color}
-                ></Icon>
-                <VStack>
-                  <Heading color="twitter.500" size="lg" fontWeight={900}>
-                    {valuesObject?.currency
-                      ? Number(valuesObject?.value / 10 ** 18)?.toFixed(2)
-                      : Number(valuesObject?.value)}{' '}
-                  </Heading>
-                  <Heading size="md">
-                    {valuesObject?.currency && valuesObject?.currency}
-                  </Heading>
-                </VStack>
-                <Text fontWeight={100}>{valuesObject?.name}</Text>
-                {/* <Heading size="sm" textAlign="center">
+            <Parallax speed={-10 + key * 10} key={key}>
+              <CenterComponent
+                style={{
+                  minH: 400,
+                  minW: 250,
+                }}
+              >
+                <VStack spacing={5}>
+                  <Icon
+                    as={valuesObject?.icon}
+                    boxSize={20}
+                    color={valuesObject?.color}
+                  ></Icon>
+                  <VStack>
+                    <Heading color="twitter.500" size="lg" fontWeight={900}>
+                      {valuesObject?.currency
+                        ? Number(valuesObject?.value / 10 ** 18)?.toFixed(2)
+                        : Number(valuesObject?.value)}{' '}
+                    </Heading>
+                    <Heading size="md">
+                      {valuesObject?.currency && valuesObject?.currency}
+                    </Heading>
+                  </VStack>
+                  <Text fontWeight={100}>{valuesObject?.name}</Text>
+                  {/* <Heading size="sm" textAlign="center">
                   {valuesObject?.name}
                 </Heading> */}
-              </VStack>
-            </CenterComponent>
+                </VStack>
+              </CenterComponent>
+            </Parallax>
           );
         })}
       </Wrap>

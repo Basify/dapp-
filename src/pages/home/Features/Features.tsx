@@ -14,7 +14,13 @@ import {
 } from '@chakra-ui/react';
 import { CenterComponent } from '../../../util/Ui';
 import { PageWrapper } from '../../../util/PageWrapper';
-import { FcClock, FcConferenceCall, FcExternal, FcFeedIn } from 'react-icons/fc';
+import {
+  FcClock,
+  FcConferenceCall,
+  FcExternal,
+  FcFeedIn,
+} from 'react-icons/fc';
+import { Parallax } from 'react-scroll-parallax';
 
 export const Features = () => {
   const featuresArray = [
@@ -46,21 +52,30 @@ export const Features = () => {
       <Wrap w="full" p={5} justify="center" align="center" spacing={5}>
         {featuresArray.map((valuesObject, key) => {
           return (
-            <CenterComponent
-              key={key}
-              style={{
-                maxW: 250,
-                minH: 400,
-              }}
-            >
-              <VStack>
-                <Icon as={valuesObject?.icon} boxSize={20}></Icon>
-                <Heading size="lg" textAlign="center" color="twitter.500" fontWeight={500}>
-                  {valuesObject?.heading}
-                </Heading>
-                <Text textAlign="center" fontWeight={100}>{valuesObject?.subHeading}</Text>
-              </VStack>
-            </CenterComponent>
+            <Parallax speed={-10 + key * 10} key={key}>
+              <CenterComponent
+                key={key}
+                style={{
+                  maxW: 250,
+                  minH: 400,
+                }}
+              >
+                <VStack>
+                  <Icon as={valuesObject?.icon} boxSize={20}></Icon>
+                  <Heading
+                    size="lg"
+                    textAlign="center"
+                    color="twitter.500"
+                    fontWeight={500}
+                  >
+                    {valuesObject?.heading}
+                  </Heading>
+                  <Text textAlign="center" fontWeight={100}>
+                    {valuesObject?.subHeading}
+                  </Text>
+                </VStack>
+              </CenterComponent>
+            </Parallax>
           );
         })}
       </Wrap>

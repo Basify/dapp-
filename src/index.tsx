@@ -6,6 +6,7 @@ import { RoutesConfig } from './navigation/Routes';
 import ProviderChakra from './providers/ProviderChakra';
 import { ProviderWeb3Modal } from './providers/ProviderWeb3Modal';
 import * as serviceWorker from './serviceWorker';
+import { ParallaxProvider } from 'react-scroll-parallax';
 import('./Pollyfills');
 
 const container = document.getElementById('root');
@@ -19,7 +20,9 @@ root.render(
       <ProviderChakra>
         <React.Suspense fallback={<Spinner />}>
           <ProviderWeb3Modal>
-            <RouterProvider router={RoutesConfig}></RouterProvider>
+            <ParallaxProvider>
+              <RouterProvider router={RoutesConfig}></RouterProvider>
+            </ParallaxProvider>
           </ProviderWeb3Modal>
         </React.Suspense>
       </ProviderChakra>
