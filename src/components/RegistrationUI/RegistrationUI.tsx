@@ -19,7 +19,7 @@ import {
   useDisclosure,
   useToast,
 } from '@chakra-ui/react';
-import { shortenAddress } from '@usedapp/core';
+// import { shortenAddress } from '@usedapp/core';
 import { FaUser } from 'react-icons/fa';
 import { parseEther } from 'viem';
 import {
@@ -33,16 +33,16 @@ import { AddressZero } from '../../constants/ContractAddress';
 import { CurrentNetworkInfo } from '../../constants/SupportedNetworkInfo';
 import { useGetUserTeam } from '../../hooks/ReferralHooks';
 import { CenterComponent } from '../../util/Ui';
-import { isAddressValid } from '../../util/UtilHooks';
 import ModalConfirmTransactions from '../Modals/ModalConfirmTransactions';
 import ModalTransactionSuccess from '../Modals/ModalTransactionSuccess';
+import { isAddressValid, shortenAddress } from '../../utils/utilFunctions';
 
 function RegistrationUI({
   referrerAddress,
   valueInDecimals,
   currentNetwork,
 }: {
-  referrerAddress: string | undefined;
+  referrerAddress: `0x${string}` | undefined;
   valueInDecimals: number;
   currentNetwork: CurrentNetworkInfo;
 }) {
@@ -50,7 +50,7 @@ function RegistrationUI({
   const { isOpen, onOpen, onClose } = useDisclosure();
   const { address } = useAccount();
   // const { chain } = useNetwork();
-  const chainId = useChainId();
+  // const chainId = useChainId();
   // const currentNetwork = supportedNetworkInfo[chain?.id!];
   const userTeamObject = useGetUserTeam(address);
   const currentReferrer = referrerAddress ? referrerAddress : AddressZero;
@@ -102,7 +102,7 @@ function RegistrationUI({
     if (!errors.isUserHaveSufficientTokenBalance) {
       toast({
         title: 'Insufficient Balance.',
-        description: 'You dont have enough BNB to register.',
+        description: `You dont have enough ${currentNetwork?.native?.nativeCurrency?.symbol} to register.`,
         status: 'error',
         duration: 5000,
         isClosable: true,
@@ -161,15 +161,15 @@ function RegistrationUI({
           </Heading>
           <HStack>
             <Heading textAlign="center" color="twitter.500" fontSize="7xl">
-              $25
+              $50
             </Heading>
           </HStack>
           <Heading size="sm">You have to pay</Heading>
           <Tag py={5} px={10} borderRadius="3xl" colorScheme="yellow">
             <HStack fontStyle="italic">
-              <Heading size="md">0.1</Heading>
+              <Heading size="md">{valueInDecimals}</Heading>
               <Heading fontWeight={500} size="md">
-                BNB
+                {currentNetwork?.native?.nativeCurrency?.symbol}
               </Heading>
             </HStack>
           </Tag>
@@ -179,11 +179,16 @@ function RegistrationUI({
               <Stack>
                 <Text>Your Balance</Text>
                 <Heading size="md" fontStyle="italic">
-                  {Number(userNativeBalance?.data?.formatted)?.toFixed(2)} BNB
+                  {Number(userNativeBalance?.data?.formatted)?.toFixed(2)}{' '}
+                  {currentNetwork?.native?.nativeCurrency?.symbol}
                 </Heading>
               </Stack>
               <Spacer />
-              <Image src={"./chainIcons/bscSmartChainLogo.svg"} alt="BNB Logo" boxSize={14}></Image>
+              <Image
+                src={currentNetwork?.logo}
+                alt="Native Logo"
+                boxSize={14}
+              ></Image>
             </HStack>
           </Tag>
 
@@ -265,8 +270,8 @@ function RegistrationUI({
               onConfirm={handleTransaction}
               transactionName="Register"
               outCurrencyObject={{
-                logo: "./chainIcons/bscSmartChainLogo.svg",
-                symbol: 'BNB',
+                logo: currentNetwork?.logo,
+                symbol: currentNetwork?.native?.nativeCurrency?.symbol,
               }}
               outCurrencyValue={valueInDecimals}
               buttonProps={{

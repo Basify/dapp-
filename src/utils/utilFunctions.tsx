@@ -1,3 +1,4 @@
+import { utils } from 'ethers';
 import { chains } from '../providers/ProviderWeb3Modal';
 
 export const isChainSupported = (chainId: number) => {
@@ -11,6 +12,47 @@ export const isChainSupported = (chainId: number) => {
   return false;
 };
 
-export const shortedAddress = (address: `0x${string}` | undefined) => {
-  
+export const shortenAddress = (
+  address: `0x${string}` | undefined,
+  to?: number
+): string => {
+  if (address) {
+    const defaultFormatter = to ?? 4;
+    const string1 = address?.slice(0, defaultFormatter);
+    const divider = '...';
+    const string2 = address.slice(
+      address.length - defaultFormatter,
+      address.length
+    );
+
+    return `${string1}${divider}${string2}`;
+  }
+
+  return '0x000...000';
+};
+
+export function formatNumberWithMaxDecimals(value: any, maxDecimals?: number) {
+  const formattedNumber = Number(value).toFixed(maxDecimals ?? 2);
+  return formattedNumber.replace(/\.?0+$/, ''); // Removes trailing zeros
+}
+
+export const isAddressValid = (address: string) => {
+  if (!utils.isAddress(address)) {
+    return false;
+  }
+  return true;
+};
+
+export const sliceTransactionHash = (transactionHash: string): string => {
+  const prefix = transactionHash.slice(0, 4);
+  const body = '...';
+  const suffix = transactionHash.slice(-4);
+
+  return `${prefix}${body}${suffix}`;
+};
+
+export function useGetRandomColor() {
+  const colors = ['red', 'blue', 'green', 'yellow', 'purple', 'pink', 'orange'];
+  const randomIndex = Math.floor(Math.random() * colors.length);
+  return colors[randomIndex];
 }

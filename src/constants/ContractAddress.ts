@@ -12,6 +12,7 @@ export type ContractObject = {
   abi: any;
   polygonAddress: `0x${string}`;
   bscAddress: `0x${string}`;
+  sepolia: `0x${string}`;
 };
 
 export type TokenContractObject = {
@@ -24,12 +25,14 @@ export const ReferralV1ContractObject: ContractObject = {
   abi: ReferralV1ContractInterface?.abi,
   polygonAddress: AddressZero,
   bscAddress: '0xcb31dB819d9ad85A46463bbA161D85532b8Ad6e7',
+  sepolia: '0x08D4FdD6Ca1d4eDA887733937785325903ef1407',
 };
 
 export const PriceOracleObject: ContractObject = {
   abi: PriceOracleInterface?.abi,
   polygonAddress: AddressZero,
   bscAddress: '0x0567f2323251f0aab15c8dfb1967e4e8a7d42aee',
+  sepolia: '0x694AA1769357215DE4FAC081bf1f309aDC325306',
 };
 
 export const USDT: TokenContractObject = {

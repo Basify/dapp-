@@ -1,4 +1,4 @@
-import { Chain, bsc } from 'wagmi/chains';
+import { Chain, bsc, sepolia } from 'wagmi/chains';
 import { PriceOracleObject, ReferralV1ContractObject } from './ContractAddress';
 
 export const projectName = 'BASIFY';
@@ -45,5 +45,13 @@ export const supportedNetworkInfo: SupportedNetworkInfo = {
     priceOracleInterface: PriceOracleObject.abi,
     native: bsc,
     logo: '/chainIcons/bscSmartChainLogo.svg',
+  },
+  [sepolia.id]: {
+    referralContractAddress: ReferralV1ContractObject?.sepolia,
+    referralContractInterface: ReferralV1ContractObject.abi,
+    priceOracleAddress: PriceOracleObject.bscAddress,
+    priceOracleInterface: PriceOracleObject.abi,
+    native: sepolia,
+    logo: '/chainIcons/ethereumChainLogo.svg',
   },
 };

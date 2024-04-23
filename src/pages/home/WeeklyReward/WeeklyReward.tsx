@@ -1,23 +1,18 @@
 'use client';
 import { HStack, Heading, VStack } from '@chakra-ui/react';
 // import { useNetwork } from 'wagmi';
+import { sepolia } from 'viem/chains';
 import { Counter } from '../../../components/Counter';
-import { supportedNetworkInfo } from '../../../constants/SupportedNetworkInfo';
 import {
   useGetWeeklyRewardToBeDistributed,
-  useNativePrice,
 } from '../../../hooks/ReferralHooks';
 import { PageWrapper } from '../../../util/PageWrapper';
 import { HeadingComponent } from '../../../util/Ui';
-import { bsc } from 'viem/chains';
 
 function WeeklyReward() {
   const weeklyRewardsToBeDistributed = useGetWeeklyRewardToBeDistributed(
-    bsc.id
+    sepolia?.id
   );
-  console.log(weeklyRewardsToBeDistributed);
-  const useCurrentNetwork = supportedNetworkInfo[bsc.id];
-  const nativePrice = useNativePrice(useCurrentNetwork?.priceOracleAddress!);
 
   return (
     <PageWrapper>

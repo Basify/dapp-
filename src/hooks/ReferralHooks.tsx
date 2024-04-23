@@ -103,7 +103,7 @@ export const useNeedNativeToRegister = (priceOracleAddress: `0x${string}`) => {
   return object;
 };
 
-export const useNativePrice = (priceOracleAddress: `0x${string}`) => {
+export const useGetNativePriceInUSD = (priceOracleAddress: `0x${string}`) => {
   const value = useReferralContractReads({
     functionName: 'getNativePriceInUSD',
     args: [priceOracleAddress],
@@ -111,7 +111,7 @@ export const useNativePrice = (priceOracleAddress: `0x${string}`) => {
 
   const object = {
     value: value,
-    data: value?.isSuccess ? (value?.data as unknown as bigint) : undefined,
+    data: value?.isSuccess ? (value?.data as unknown as bigint) : 0,
   };
 
   return object;

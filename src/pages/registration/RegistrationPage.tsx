@@ -9,14 +9,12 @@ import {
   UserBusinessType,
   useGetUserBusiness,
   useGetUserCurrentUpgradeLevel,
-  useNativePrice,
-  useNeedNativeToRegister,
+  useGetNativePriceInUSD,
   useUpgradePlans,
 } from '../../hooks/ReferralHooks';
 import { CheckReferrerActive } from './CheckReferrerActive';
 
 export default function RegistrationPage() {
-  // const { chain } = useNetwork();
   const chainId = useChainId();
   const currentNetwork = supportedNetworkInfo[chainId];
   const { address } = useAccount();
@@ -25,12 +23,14 @@ export default function RegistrationPage() {
   const userBusiness = userBusinessObject?.data as unknown as UserBusinessType;
 
   const userLevelToUpgrade = useGetUserCurrentUpgradeLevel(address);
-  const nativePrice = useNativePrice(currentNetwork?.priceOracleAddress!);
+  const nativePriceInUSD = useGetNativePriceInUSD(
+    currentNetwork?.priceOracleAddress!
+  )?.data as unknown as bigint;
   const upgradePlansObject = useUpgradePlans();
   // const upgradePlans = upgradePlansObject?.data as unknown as number;
-  const valueToRegister = useNeedNativeToRegister(
-    currentNetwork.priceOracleAddress!
-  );
+  const valueToRegister = nativePriceInUSD
+    ? 50 / Number(nativePriceInUSD) / 10 ** 18
+    : 0;
 
   return (
     <CheckReferrerActive
@@ -51,7 +51,7 @@ export default function RegistrationPage() {
         {Number(userBusiness.selfBusiness ?? 0) === 0 ? (
           <RegistrationUI
             referrerAddress={referrerAddress}
-            valueInDecimals={Number(valueToRegister ?? 0) / 10 ** 18}
+            valueInDecimals={Number(valueToRegister ?? 0)}
             currentNetwork={currentNetwork}
           ></RegistrationUI>
         ) : (
@@ -67,7 +67,7 @@ export default function RegistrationPage() {
                     upgradePlansObject?.data?.[
                       Number(userLevelToUpgrade?.data?.level) ?? 0
                     ].valueToUpgradeInUSD ?? 0
-                  ) / Number(nativePrice)
+                  ) / Number(valueToRegister)
                 : 0
             }
             currentNetwork={currentNetwork}

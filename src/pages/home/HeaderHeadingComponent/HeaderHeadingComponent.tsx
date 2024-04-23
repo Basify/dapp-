@@ -1,4 +1,3 @@
-'use client';
 import { ChevronRightIcon } from '@chakra-ui/icons';
 import {
   Button,
@@ -12,7 +11,6 @@ import { projectName } from '../../../constants/SupportedNetworkInfo';
 
 export const HeaderHeadingComponent = () => {
   const mainHeading = `POWERFUL CRYPTO REWARD NETWORK`;
-  // const secondaryHeading = ;
   return (
     <Stack spacing={5} maxW="3xl">
       <Text
@@ -27,14 +25,7 @@ export const HeaderHeadingComponent = () => {
       >
         {mainHeading}
       </Text>
-      <Heading
-        size="lg"
-        // textAlign="center"
-        // px={5}
-        lineHeight={1.2}
-        maxW="2xl"
-        fontWeight={100}
-      >
+      <Heading size="lg" lineHeight={1.2} maxW="2xl" fontWeight={100}>
         A fully #decentralised protocol that distributes rewards for joining the{' '}
         <Heading as="span" color="pink.500">
           {projectName}

@@ -10,7 +10,7 @@ import {
   VStack,
 } from '@chakra-ui/react';
 import { CurrentNetworkInfo } from '../../constants/SupportedNetworkInfo';
-import { sliceTransactionHash } from '../../util/UtilHooks';
+import { sliceTransactionHash } from '../../utils/utilFunctions';
 
 function ModalTransactionSuccess({
   onClose,

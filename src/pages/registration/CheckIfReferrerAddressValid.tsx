@@ -1,10 +1,8 @@
 import React, { ReactNode } from 'react';
 import { useParams } from 'react-router-dom';
-import { isAddressValid } from '../../util/UtilHooks';
 import { RegistrationErrorPage } from './RegistrationErrorPage';
 import { VStack } from '@chakra-ui/react';
-import { useAccount } from 'wagmi';
-import { useGetUserBusiness } from '../../hooks/ReferralHooks';
+import { isAddressValid } from '../../utils/utilFunctions';
 
 export const CheckIfReferrerAddressValid = ({
   children,
