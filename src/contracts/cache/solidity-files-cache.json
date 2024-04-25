@@ -462,8 +462,8 @@
       ]
     },
     "/Users/suru.martian/Documents/Projects/basify/src/contracts/contracts/BasifyUpgradeable.sol": {
-      "lastModificationDate": 1713857279158,
-      "contentHash": "6a1d872c14b8247e8ad7360deac34e18",
+      "lastModificationDate": 1714030158716,
+      "contentHash": "49ab7b05e7893c9b1e8473ffb38c9e53",
       "sourceName": "contracts/BasifyUpgradeable.sol",
       "solcConfig": {
         "version": "0.8.18",

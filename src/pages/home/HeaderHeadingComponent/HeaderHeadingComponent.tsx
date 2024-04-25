@@ -29,8 +29,7 @@ export const HeaderHeadingComponent = () => {
         A fully #decentralised protocol that distributes rewards for joining the{' '}
         <Heading as="span" color="pink.500">
           {projectName}
-        </Heading>{' '}
-        network
+        </Heading>
       </Heading>
       <Link to="/registration">
         <Button

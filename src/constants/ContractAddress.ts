@@ -25,7 +25,7 @@ export const ReferralV1ContractObject: ContractObject = {
   abi: ReferralV1ContractInterface?.abi,
   polygonAddress: AddressZero,
   bscAddress: '0xcb31dB819d9ad85A46463bbA161D85532b8Ad6e7',
-  sepolia: '0x08D4FdD6Ca1d4eDA887733937785325903ef1407',
+  sepolia: '0xd871D753DB61927D436Ed43D63687FEDe0B49252',
 };
 
 export const PriceOracleObject: ContractObject = {
@@ -35,14 +35,14 @@ export const PriceOracleObject: ContractObject = {
   sepolia: '0x694AA1769357215DE4FAC081bf1f309aDC325306',
 };
 
-export const USDT: TokenContractObject = {
-  abi: erc20Abi,
-  polygonAddress: '0xc2132D05D31c914a87C6611C10748AEb04B58e8F',
-  bscAddress: '0x55d398326f99059fF775485246999027B3197955',
-};
+// export const USDT: TokenContractObject = {
+//   abi: erc20Abi,
+//   polygonAddress: '0xc2132D05D31c914a87C6611C10748AEb04B58e8F',
+//   bscAddress: '0x55d398326f99059fF775485246999027B3197955',
+// };
 
-export const BUSD: TokenContractObject = {
-  abi: erc20Abi,
-  polygonAddress: '0x9C9e5fD8bbc25984B178FdCE6117Defa39d2db39',
-  bscAddress: '0xe9e7CEA3DedcA5984780Bafc599bD69ADd087D56',
-};
+// export const BUSD: TokenContractObject = {
+//   abi: erc20Abi,
+//   polygonAddress: '0x9C9e5fD8bbc25984B178FdCE6117Defa39d2db39',
+//   bscAddress: '0xe9e7CEA3DedcA5984780Bafc599bD69ADd087D56',
+// };

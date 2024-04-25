@@ -14,6 +14,7 @@ import { LogoFull } from './LogoFull';
 import SocialMediaIcons from './SocialMediaIcons';
 import { ExternalLinkIcon } from '@chakra-ui/icons';
 import { projectName } from '../constants/SupportedNetworkInfo';
+import { Logo } from './Logo';
 
 export default function Footer() {
   return (
@@ -38,7 +39,7 @@ export default function Footer() {
         spacing={10}
       >
         <VStack spacing={5}>
-          <LogoFull />
+          <Logo />
           <Text textAlign="center">
             © 2023 {projectName}. All rights reserved
           </Text>

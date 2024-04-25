@@ -1,7 +1,7 @@
 import { Chain, bsc, sepolia } from 'wagmi/chains';
 import { PriceOracleObject, ReferralV1ContractObject } from './ContractAddress';
 
-export const projectName = 'BASIFY';
+export const projectName = 'BASEFY NETWORK';
 export const tagLine = 'Web3 Reward Distribution Protocol';
 export const AddressZero: `0x${string}` =
   '0x0000000000000000000000000000000000000000';

@@ -136,21 +136,21 @@ contract BasifyUpgradeable is
     receive() external payable {}
 
     function initialize() public initializer {
-        _defaultReferrer = 0xeb1100091Ce830ba58A04834c35D29B75b53eb74; //Need to change
+        _defaultReferrer = 0x076f6eed63c6631Eeed902Ba786713D835856252; //Need to change
         _registrationValueInUSD = 50 * 10 ** 18;
 
         _levelRatesFixed = 60;
         _levelsToCount = 8;
         _refereeLimit = 2;
 
-        _teamWallet = 0x76b7c991C3Ef93B6771fAC97a984a2Cb37962fbc; // need to change
-        _teamWalletRate = 20;
+        _teamWallet = 0x78f0e036694447c038ee75434Ab4831648CB7918; // need to change
+        _teamWalletRate = 16;
 
-        _liquidityCreateRate = 16;
+        _liquidityCreateRate = 20;
         _weeklyRewardRate = 4;
         _weeklyRewardTimestamp = block.timestamp;
 
-        _liquidityWallet = 0xefA6077f510B10a6C1B2f8dA24a89Fc561aC9445; // yet to decide
+        _liquidityWallet = 0xdC1d994a41cA203DF8A5bab8B55C2664F5f880d4; // yet to decide
 
         __Ownable_init();
         __UUPSUpgradeable_init();
