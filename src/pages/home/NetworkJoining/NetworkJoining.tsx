@@ -11,6 +11,14 @@ import { HeadingComponent } from '../../../util/Ui';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { Doughnut } from 'react-chartjs-2';
 import { PageWrapper } from '../../../util/PageWrapper';
+import { sepolia } from 'viem/chains';
+import {
+  liquidityGenerationFees,
+  networkJoiningFees,
+  projectDevelopmentFees,
+  referralIncomeFees,
+  weeklyRewardFees,
+} from '../../../constants/SupportedNetworkInfo';
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
@@ -18,10 +26,10 @@ export const NetworkJoining = () => {
   const chartBorderColor = useColorModeValue('white', '#1A202C');
   const data = {
     labels: [
-      '$15 | Referral Rewards',
-      '$5 | Project Development',
-      '$4 | Liquidity Generation',
-      '$1 | Weekly Rewards',
+      `${referralIncomeFees} | Referral Rewards`,
+      `${projectDevelopmentFees} | Project Development`,
+      `${liquidityGenerationFees} | Liquidity Generation`,
+      `${weeklyRewardFees} | Weekly Rewards`,
     ],
     datasets: [
       {
@@ -75,7 +83,7 @@ export const NetworkJoining = () => {
           bgGradient="linear(to-r, green.200, orange.500)"
           bgClip="text"
         >
-          $25 worth of BNB
+          {networkJoiningFees} worth of {sepolia?.nativeCurrency?.symbol}
         </Heading>
       </VStack>
     </PageWrapper>

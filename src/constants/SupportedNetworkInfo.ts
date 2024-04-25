@@ -3,6 +3,12 @@ import { PriceOracleObject, ReferralV1ContractObject } from './ContractAddress';
 
 export const projectName = 'BASEFY NETWORK';
 export const tagLine = 'Web3 Reward Distribution Protocol';
+export const networkJoiningFees = '$50';
+export const referralIncomeFees = '$30';
+export const projectDevelopmentFees = '$8';
+export const liquidityGenerationFees = '$10';
+export const weeklyRewardFees = '$2';
+
 export const AddressZero: `0x${string}` =
   '0x0000000000000000000000000000000000000000';
 export const AddressDead: `0x${string}` =

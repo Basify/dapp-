@@ -20,7 +20,7 @@ const metadata = {
   icons: ['https://avatars.githubusercontent.com/u/37784886'],
 };
 
-export const chains = [bsc, bscTestnet, sepolia] as const;
+export const chains = [bsc, sepolia] as const;
 
 const config = defaultWagmiConfig({
   chains,
