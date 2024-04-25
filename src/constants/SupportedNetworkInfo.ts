@@ -55,7 +55,7 @@ export const supportedNetworkInfo: SupportedNetworkInfo = {
   [sepolia.id]: {
     referralContractAddress: ReferralV1ContractObject?.sepolia,
     referralContractInterface: ReferralV1ContractObject.abi,
-    priceOracleAddress: PriceOracleObject.bscAddress,
+    priceOracleAddress: PriceOracleObject.sepolia,
     priceOracleInterface: PriceOracleObject.abi,
     native: sepolia,
     logo: '/chainIcons/ethereumChainLogo.svg',

@@ -2,6 +2,7 @@ import { FcScatterPlot } from 'react-icons/fc';
 import { BalanceContainer } from '../../../components/BalanceContainer';
 import { CardContainer } from '../../../components/CardContainer';
 import { useGetUserRewards } from '../../../hooks/ReferralHooks';
+import { weiToDecimals } from '../../../utils/utilFunctions';
 
 export default function RewardsCard({
   userAddress,
@@ -13,7 +14,7 @@ export default function RewardsCard({
   const userValueObject = [
     {
       name: 'Referral Rewards',
-      value: Number(userRewardsObject?.data?.referralRewardInUSD) ?? 0,
+      value: weiToDecimals(userRewardsObject?.data?.referralRewardInUSD) ?? 0,
     },
     {
       name: 'Weekly Rewards',

@@ -26,7 +26,7 @@ function TeamCard({ userAddress }: { userAddress: `0x${string}` }) {
         return (
           <BalanceContainer
             heading={valueObject?.name}
-            value={valueObject?.value}
+            value={Number(valueObject?.value)}
             key={key}
             showIcon={false}
           ></BalanceContainer>

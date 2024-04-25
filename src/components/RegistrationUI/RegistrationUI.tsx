@@ -49,6 +49,7 @@ function RegistrationUI({
   const toast = useToast();
   const { isOpen, onOpen, onClose } = useDisclosure();
   const { address } = useAccount();
+
   // const { chain } = useNetwork();
   // const chainId = useChainId();
   // const currentNetwork = supportedNetworkInfo[chain?.id!];

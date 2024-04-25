@@ -1,5 +1,8 @@
 import { useChainId, useReadContract } from 'wagmi';
-import { ReferralV1ContractObject } from '../constants/ContractAddress';
+import {
+  AddressZero,
+  ReferralV1ContractObject,
+} from '../constants/ContractAddress';
 import { supportedNetworkInfo } from '../constants/SupportedNetworkInfo';
 
 export const useReferralContractReads = ({
@@ -79,11 +82,14 @@ export const useGetUserCurrentUpgradeLevel = (
     args: [userAddress],
   });
 
+  const data = value?.data as any[] | undefined;
+
   const object = {
     value: value,
-    data: value?.isSuccess
-      ? (value?.data as unknown as UserCurrentUpgradeLevelType)
-      : undefined,
+    data: {
+      level: data ? data?.[0] : 0,
+      totalUpgradeValueInUSD: data ? data?.[1] : 0,
+    },
   };
 
   return object;
@@ -160,11 +166,16 @@ export const useGetUserRewards = (userAddress: `0x${string}` | undefined) => {
     args: [userAddress],
   });
 
+  const data = value?.data as any[] | undefined;
+
   const object = {
     value: value,
-    data: value?.isSuccess
-      ? (value?.data as unknown as UserRewardType)
-      : undefined,
+    data: {
+      referralRewardInUSD: data ? (data?.[0] as bigint) : BigInt(0),
+      weeklyRewardInUSD: data ? (data?.[1] as bigint) : BigInt(0),
+      upgradeRewardsInUSD: data ? (data?.[2] as bigint) : BigInt(0),
+      totalRewards: data ? (data?.[3] as bigint) : BigInt(0),
+    },
   };
 
   return object;
@@ -175,14 +186,19 @@ export type TypeTeamStruct = {
   level: number;
 };
 
+export type TypeRefereeAssigned = {
+  referee: `0x${string}`;
+  assignedTo: bigint;
+};
+
 export type UserTeamObjectType = {
   referrer: `0x${string}`;
   referees: `0x${string}`[];
-  refereeCount: number;
-  refereeAssigned: `0x${string}`[] | [];
-  refereeAssignedCount: number;
+  refereeCount: bigint;
+  refereeAssigned: TypeRefereeAssigned[] | [];
+  refereeAssignedCount: bigint;
   team: TypeTeamStruct[];
-  teamCount: number;
+  teamCount: bigint;
 };
 
 export const useGetUserTeam = (userAddress: `0x${string}` | undefined) => {
@@ -191,11 +207,43 @@ export const useGetUserTeam = (userAddress: `0x${string}` | undefined) => {
     args: [userAddress],
   });
 
+  const data = value?.data ? (value?.data as unknown as any[]) : undefined;
+
   const object = {
     value: value,
-    data: value?.isSuccess
-      ? (value?.data as unknown as UserTeamObjectType)
-      : undefined,
+    data: {
+      referrer: value?.data
+        ? (data?.[0] as unknown as `0x${string}`)
+        : AddressZero,
+      referees: value?.data ? (data?.[1] as unknown as `0x${string}`[]) : [],
+      refereeCount: value?.data ? (data?.[2] as unknown as bigint) : 0,
+      refereeAssigned: () => {
+        let refereeData = [] as unknown[];
+        for (let i = 0; i < data?.[3]?.length; i++) {
+          refereeData.push({
+            referee: data?.[3]?.[i]?.[0] as `0x${string}`,
+            assignedTo: data?.[3]?.[i]?.[1] as bigint,
+          });
+        }
+
+        return refereeData;
+      },
+      refereeAssignedCount: value?.data ? (data?.[4] as unknown as bigint) : 0,
+      team: () => {
+        let refereeData = [] as unknown[] as {
+          teamMember: `0x${string}`;
+          level: bigint;
+        }[];
+        for (let i = 0; i < data?.[5]?.length; i++) {
+          refereeData.push({
+            teamMember: data?.[5]?.[i]?.[0] as `0x${string}`,
+            level: data?.[5]?.[i]?.[1] as bigint,
+          });
+        }
+        return refereeData;
+      },
+      teamCount: value?.data ? (data?.[6] as unknown as bigint) : 0,
+    },
   };
 
   return object;

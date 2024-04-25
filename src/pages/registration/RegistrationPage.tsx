@@ -27,9 +27,9 @@ export default function RegistrationPage() {
     currentNetwork?.priceOracleAddress!
   )?.data as unknown as bigint;
   const upgradePlansObject = useUpgradePlans();
-  // const upgradePlans = upgradePlansObject?.data as unknown as number;
+
   const valueToRegister = nativePriceInUSD
-    ? 50 / Number(nativePriceInUSD) / 10 ** 18
+    ? (50 / (Number(nativePriceInUSD) / 10 ** 18))?.toFixed(4)
     : 0;
 
   return (

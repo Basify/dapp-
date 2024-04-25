@@ -1,5 +1,4 @@
 import {
-  Button,
   Icon,
   IconButton,
   IconButtonProps,
@@ -7,35 +6,30 @@ import {
   Wrap,
   useColorModeValue,
 } from '@chakra-ui/react';
-import React, { JSXElementConstructor, ReactElement, ReactNode } from 'react';
-import {
-  FaBlog,
-  FaDiscord,
-  FaGithub,
-  FaTelegram,
-  FaTwitter,
-} from 'react-icons/fa';
+import { JSXElementConstructor, ReactElement } from 'react';
+import { FaBlog, FaGithub, FaTelegram, FaTwitter } from 'react-icons/fa';
+import { FaX } from 'react-icons/fa6';
 
 const iconsObject = [
   {
-    label: 'Twitter',
-    icon: FaTwitter,
-    href: 'https://twitter.com/CashXnetwork',
+    label: 'X',
+    icon: FaX,
+    href: 'https://x.com/BASEFYNETWORK',
   },
   {
     label: 'Telegram',
     icon: FaTelegram,
-    href: 'https://t.me/CashXnetwork',
+    href: 'https://t.me/BASEFYNETWORK ',
   },
   {
     label: 'Blog',
     icon: FaBlog,
-    href: 'https://blog.cashx.network',
+    href: 'https://blog.basefy.network',
   },
   {
     label: 'Github',
     icon: FaGithub,
-    href: 'https://docs.cashx.network',
+    href: 'https://github.com/Basify',
   },
 ];
 
@@ -43,16 +37,16 @@ const SocialMediaIconsButton = ({
   icon,
   label,
   href,
-  style
+  style,
 }: {
   icon: ReactElement<any, string | JSXElementConstructor<any>> | undefined;
   label: string;
   href: string;
-  style?: IconButtonProps
+  style?: IconButtonProps;
 }) => {
   return (
     <IconButton
-    // @ts-ignore
+      // @ts-ignore
       aria-label="Social Media Icons Button"
       bg={useColorModeValue('blackAlpha.100', 'whiteAlpha.100')}
       rounded={'full'}
@@ -77,7 +71,7 @@ const SocialMediaIconsButton = ({
   );
 };
 
-export const SocialMediaIcons = ({style}:{style?: IconButtonProps}) => {
+export const SocialMediaIcons = ({ style }: { style?: IconButtonProps }) => {
   return (
     <Wrap spacing={3} align="center" justify="center">
       {iconsObject?.map((iconsObject, key) => {

@@ -32,11 +32,11 @@ function UserTeamTable({ userAddress }: { userAddress: `0x${string}` }) {
         </Thead>
         <Tbody>
           {userTeamObject?.data?.teamCount! > 0 ? (
-            userTeamAddress?.map((TypeTeamStruct, key: number) => {
+            userTeamAddress()?.map((TypeTeamStruct, key: number) => {
               return (
                 <UserTeamTableComponent
                   key={key}
-                  level={TypeTeamStruct?.level}
+                  level={Number(TypeTeamStruct?.level)}
                   userAddress={TypeTeamStruct?.teamMember}
                 ></UserTeamTableComponent>
               );

@@ -31,10 +31,27 @@ export const shortenAddress = (
   return '0x000...000';
 };
 
-export function formatNumberWithMaxDecimals(value: any, maxDecimals?: number) {
-  const formattedNumber = Number(value).toFixed(maxDecimals ?? 2);
-  return formattedNumber.replace(/\.?0+$/, ''); // Removes trailing zeros
-}
+export const weiToDecimals = (
+  valueInWei?: bigint,
+  decimalsToFormat?: number,
+  maxDecimalsToDisplay?: number
+): number => {
+  if(valueInWei) {
+  const valueInDecimals = Number(valueInWei) / 10 ** (decimalsToFormat ?? 18);
+  const formattedNumber = valueInDecimals.toFixed(maxDecimalsToDisplay ?? 2);
+  return Number(formattedNumber.replace(/\.?0+$/, '')); // Removes trailing zeros
+  }
+
+  return 0;
+};
+
+// export function formatNumberWithMaxDecimals(
+//   value: bigint,
+//   maxDecimals?: number
+// ) {
+//   const formattedNumber = Number(value).toFixed(maxDecimals ?? 2);
+//   return formattedNumber.replace(/\.?0+$/, ''); // Removes trailing zeros
+// }
 
 export const isAddressValid = (address: string) => {
   if (!utils.isAddress(address)) {
