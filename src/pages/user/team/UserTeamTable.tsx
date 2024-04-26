@@ -14,7 +14,8 @@ import UserTeamTableComponent from './UserTeamTableComponent';
 function UserTeamTable({ userAddress }: { userAddress: `0x${string}` }) {
   const userTeamObject = useGetUserTeam(userAddress);
   const userTeamCount = userTeamObject?.data?.teamCount;
-  const userTeamAddress = userTeamObject?.data?.team;
+  const userTeamAddress = userTeamObject?.data?.team();
+
   return (
     <TableContainer
       w="full"
@@ -32,7 +33,7 @@ function UserTeamTable({ userAddress }: { userAddress: `0x${string}` }) {
         </Thead>
         <Tbody>
           {userTeamObject?.data?.teamCount! > 0 ? (
-            userTeamAddress()?.map((TypeTeamStruct, key: number) => {
+            userTeamAddress?.map((TypeTeamStruct, key: number) => {
               return (
                 <UserTeamTableComponent
                   key={key}

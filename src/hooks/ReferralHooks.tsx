@@ -136,8 +136,6 @@ export const useGetUserBusiness = (userAddress: `0x${string}` | undefined) => {
     args: [userAddress],
   });
 
-  console.log(value);
-
   const data = (value?.data as unknown as bigint[] | undefined) ?? undefined;
 
   const object = {
@@ -219,6 +217,7 @@ export const useGetUserTeam = (userAddress: `0x${string}` | undefined) => {
       refereeCount: value?.data ? (data?.[2] as unknown as bigint) : 0,
       refereeAssigned: () => {
         let refereeData = [] as unknown[];
+
         for (let i = 0; i < data?.[3]?.length; i++) {
           refereeData.push({
             referee: data?.[3]?.[i]?.[0] as `0x${string}`,
@@ -236,8 +235,8 @@ export const useGetUserTeam = (userAddress: `0x${string}` | undefined) => {
         }[];
         for (let i = 0; i < data?.[5]?.length; i++) {
           refereeData.push({
-            teamMember: data?.[5]?.[i]?.[0] as `0x${string}`,
-            level: data?.[5]?.[i]?.[1] as bigint,
+            teamMember: data?.[5]?.[i]?.teamMember as `0x${string}`,
+            level: data?.[5]?.[i]?.level as bigint,
           });
         }
         return refereeData;

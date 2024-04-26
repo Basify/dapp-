@@ -33,7 +33,6 @@ function NavUserMenu({
 }) {
   const { address } = useAccount();
   const userBusiness = useGetUserBusiness(address);
-  console.log(userBusiness);
   const menuObject = [
     {
       icon: BiSolidHomeCircle,
