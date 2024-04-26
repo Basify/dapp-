@@ -19,7 +19,7 @@ export const supportedCurrencyIcons = [
   '/token-icons/busd.svg',
 ];
 
-export const defaultChainId = bsc.id;
+export const defaultChainId = sepolia.id;
 
 export interface SupportedTokenInterface {
   contractAddress: `0x${string}`;
