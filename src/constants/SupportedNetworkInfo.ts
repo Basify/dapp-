@@ -16,7 +16,6 @@ export const AddressDead: `0x${string}` =
 
 export const supportedCurrencyIcons = [
   '/token-icons/usdt.svg',
-  '/token-icons/busd.svg',
 ];
 
 export const defaultChainId = sepolia.id;
