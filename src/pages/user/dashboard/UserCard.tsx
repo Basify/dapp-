@@ -6,6 +6,7 @@ import {
   useGetUserCurrentUpgradeLevel,
   useGetUserRewards,
 } from '../../../hooks/ReferralHooks';
+import { weiToDecimals } from '../../../utils/utilFunctions';
 
 export const UserCard = ({ userAddress }: { userAddress: `0x${string}` }) => {
   const userRewards = useGetUserRewards(userAddress);
@@ -14,7 +15,7 @@ export const UserCard = ({ userAddress }: { userAddress: `0x${string}` }) => {
     <CardContainer heading="Hey Welcome!" icon={RiUser6Fill}>
       <Heading textAlign="center">You have earned</Heading>
       <Heading fontSize="5xl" color="twitter.500">
-        ${Number(userRewards?.data?.totalRewards) ?? 0}
+        ${weiToDecimals(userRewards?.data?.totalRewards) ?? 0}
       </Heading>
       <Divider></Divider>
       <Heading>Level</Heading>
