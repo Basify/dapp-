@@ -83,7 +83,7 @@ function Team() {
 
         <VStack>
           <UserTeamDisplayCard
-            address={userAddress ?? address}
+            address={userAddress ?? address ?? AddressZero}
             icon={FcAssistant}
             userType="You"
           />

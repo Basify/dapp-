@@ -3,11 +3,11 @@ import {
   Button,
   Tag
 } from '@chakra-ui/react';
-import { shortenAddress } from '@usedapp/core';
 import { IconType } from 'react-icons';
 import { AddressZero } from '../constants/SupportedNetworkInfo';
 import { AddressActionButtons } from './AddressActionButtons';
 import { CardContainer } from './CardContainer';
+import { shortenAddress } from '../utils/utilFunctions';
 
 function UserTeamDisplayCard({
   userType,

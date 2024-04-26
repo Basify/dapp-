@@ -1,7 +1,7 @@
 import { useGetUserTeam } from '../../../hooks/ReferralHooks';
 import { Tag, Td, Tr } from '@chakra-ui/react';
-import { shortenAddress } from '@usedapp/core';
 import React from 'react';
+import { shortenAddress } from '../../../utils/utilFunctions';
 
 function UserTeamTableComponent({
   level,
@@ -13,7 +13,7 @@ function UserTeamTableComponent({
   const userTeamObject = useGetUserTeam(userAddress);
   return (
     <Tr>
-      <Td>{level}</Td>
+      <Td>{Number(level)}</Td>
       <Td>
         <Tag size="lg" borderRadius="xl">
           {shortenAddress(userAddress)}
