@@ -36,13 +36,28 @@ export const weiToDecimals = (
   decimalsToFormat?: number,
   maxDecimalsToDisplay?: number
 ): number => {
-  if(valueInWei) {
-  const valueInDecimals = Number(valueInWei) / 10 ** (decimalsToFormat ?? 18);
-  const formattedNumber = valueInDecimals.toFixed(maxDecimalsToDisplay ?? 2);
-  return Number(formattedNumber.replace(/\.?0+$/, '')); // Removes trailing zeros
+  if (valueInWei) {
+    const valueInDecimals = Number(valueInWei) / 10 ** (decimalsToFormat ?? 18);
+    const formattedNumber = valueInDecimals.toFixed(maxDecimalsToDisplay ?? 2);
+    return Number(formattedNumber.replace(/\.?0+$/, '')); // Removes trailing zeros
   }
 
   return 0;
+};
+
+export const nativeToUSD = (
+  nativeValueInWei: bigint | undefined,
+  nativePriceInUSD: bigint | undefined
+): bigint => {
+  let valueInDecimals = BigInt(0);
+
+  if (nativeValueInWei && nativePriceInUSD) {
+    valueInDecimals = BigInt(
+      Number(nativeValueInWei * nativePriceInUSD) / 10 ** 18
+    );
+  }
+
+  return valueInDecimals;
 };
 
 // export function formatNumberWithMaxDecimals(

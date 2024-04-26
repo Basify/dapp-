@@ -43,11 +43,34 @@ export const useUpgradePlans = () => {
     functionName: 'getUpgradePlans',
   });
 
+  const data = value?.data as any[] | undefined;
+
   const object = {
     value: value,
-    data: value?.isSuccess
-      ? (value?.data as unknown as UpgradeStructType[])
-      : undefined,
+    data: {
+      upgradePlans: () => {
+        const upgradePlans = [];
+        // // let upgradePlans: {
+        // //   id: bigint,
+        // //   valueToUpgradeInUSD: bigint
+        // // }[] | [] = [];
+
+        if (data?.[0]?.length > 0) {
+          for (let i = 0; i < data?.[0]?.length; i++) {
+            upgradePlans.push({
+              id: data?.[0]?.[i]?.id as bigint,
+              valueToUpgradeInUSD: data?.[0]?.[i]
+                ?.valueToUpgradeInUSD as bigint,
+            });
+          }
+        }
+
+        console.log(upgradePlans);
+
+        return upgradePlans;
+      },
+      upgradePlansCount: data ? (data?.[1] as bigint) : BigInt(0),
+    },
   };
 
   return object;
@@ -87,8 +110,10 @@ export const useGetUserCurrentUpgradeLevel = (
   const object = {
     value: value,
     data: {
-      level: data ? data?.[0] : 0,
-      totalUpgradeValueInUSD: data ? data?.[1] : 0,
+      level: data ? (data?.[0] as bigint) : (BigInt(0) as bigint),
+      totalUpgradeValueInUSD: data
+        ? (data?.[1] as bigint)
+        : (BigInt(0) as bigint),
     },
   };
 
@@ -117,7 +142,7 @@ export const useGetNativePriceInUSD = (priceOracleAddress: `0x${string}`) => {
 
   const object = {
     value: value,
-    data: value?.isSuccess ? (value?.data as unknown as bigint) : 0,
+    data: value?.isSuccess ? (value?.data as unknown as bigint) : BigInt(0),
   };
 
   return object;

@@ -3,15 +3,25 @@ import { HStack, Heading, VStack } from '@chakra-ui/react';
 // import { useNetwork } from 'wagmi';
 import { sepolia } from 'viem/chains';
 import { Counter } from '../../../components/Counter';
-import { useGetWeeklyRewardToBeDistributed } from '../../../hooks/ReferralHooks';
+import {
+  useGetNativePriceInUSD,
+  useGetWeeklyRewardToBeDistributed,
+} from '../../../hooks/ReferralHooks';
 import { PageWrapper } from '../../../util/PageWrapper';
 import { HeadingComponent } from '../../../util/Ui';
-import { weiToDecimals } from '../../../utils/utilFunctions';
+import { nativeToUSD, weiToDecimals } from '../../../utils/utilFunctions';
+import { supportedNetworkInfo } from '../../../constants/SupportedNetworkInfo';
 
 function WeeklyReward() {
   const weeklyRewardsToBeDistributed = useGetWeeklyRewardToBeDistributed(
     sepolia?.id
   );
+
+  const currentNetwork = supportedNetworkInfo[sepolia?.id];
+
+  const nativePriceInUSD = useGetNativePriceInUSD(
+    currentNetwork?.priceOracleAddress!
+  )?.data as unknown as bigint;
 
   return (
     <PageWrapper>
@@ -23,9 +33,12 @@ function WeeklyReward() {
         <HStack>
           <Heading>
             {weiToDecimals(
-              weeklyRewardsToBeDistributed?.data?.rewardValue,
+              nativeToUSD(
+                weeklyRewardsToBeDistributed?.data?.rewardValue,
+                nativePriceInUSD
+              ),
               18,
-              7
+              3
             )}
           </Heading>
           <Heading color="orange.500">USDT</Heading>

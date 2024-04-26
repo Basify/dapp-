@@ -4,7 +4,10 @@ import { useParams } from 'react-router-dom';
 import { useAccount, useChainId } from 'wagmi';
 import RegistrationUI from '../../components/RegistrationUI/RegistrationUI';
 import UpgradeUI from '../../components/UpgradeUi/UpgradeUi';
-import { supportedNetworkInfo } from '../../constants/SupportedNetworkInfo';
+import {
+  registrationAmountInDecimals,
+  supportedNetworkInfo,
+} from '../../constants/SupportedNetworkInfo';
 import {
   UserBusinessType,
   useGetUserBusiness,
@@ -13,6 +16,7 @@ import {
   useUpgradePlans,
 } from '../../hooks/ReferralHooks';
 import { CheckReferrerActive } from './CheckReferrerActive';
+import { weiToDecimals } from '../../utils/utilFunctions';
 
 export default function RegistrationPage() {
   const chainId = useChainId();
@@ -27,10 +31,39 @@ export default function RegistrationPage() {
     currentNetwork?.priceOracleAddress!
   )?.data as unknown as bigint;
   const upgradePlansObject = useUpgradePlans();
+  const upgradePlans = upgradePlansObject?.data?.upgradePlans();
+  const upgradePlansCount = upgradePlansObject?.data?.upgradePlansCount;
 
-  const valueToRegister = nativePriceInUSD
-    ? (50 / (Number(nativePriceInUSD) / 10 ** 18))?.toFixed(4)
-    : 0;
+  // const valueToRegister = nativePriceInUSD
+  //   ? (50 / (Number(nativePriceInUSD) / 10 ** 18))?.toFixed(4)
+  //   : 0;
+
+  console.log(
+    `weiToDecimals(
+    upgradePlans[Number(userLevelToUpgrade?.data?.level) ?? 0]
+      .valueToUpgradeInUSD ?? 0, 18, 7
+  ),`,
+    weiToDecimals(
+      upgradePlans[Number(userLevelToUpgrade?.data?.level) ?? 0]
+        ?.valueToUpgradeInUSD ?? 0,
+      18,
+      7
+    )
+  );
+
+  const getValueToRegisterNativeDecimals = (
+    valueToRegisterUSDDecimals: number,
+    nativePriceInUSD: bigint | undefined
+  ): number => {
+    let valueInDecimals = 0;
+
+    if (nativePriceInUSD) {
+      valueInDecimals =
+        valueToRegisterUSDDecimals / weiToDecimals(nativePriceInUSD, 18, 4);
+    }
+
+    return valueInDecimals;
+  };
 
   return (
     <CheckReferrerActive
@@ -51,23 +84,28 @@ export default function RegistrationPage() {
         {Number(userBusiness.selfBusiness ?? 0) === 0 ? (
           <RegistrationUI
             referrerAddress={referrerAddress}
-            valueInDecimals={Number(valueToRegister ?? 0)}
+            valueInDecimals={getValueToRegisterNativeDecimals(
+              registrationAmountInDecimals,
+              nativePriceInUSD
+            )}
             currentNetwork={currentNetwork}
           ></RegistrationUI>
         ) : (
           <UpgradeUI
             upgradePlan={
-              upgradePlansObject?.data?.[
-                Number(userLevelToUpgrade?.data?.level) ?? 0
-              ]
+              upgradePlans[Number(userLevelToUpgrade?.data?.level) ?? 0]
             }
             valueInDecimals={
               upgradePlansObject?.data
-                ? Number(
-                    upgradePlansObject?.data?.[
-                      Number(userLevelToUpgrade?.data?.level) ?? 0
-                    ].valueToUpgradeInUSD ?? 0
-                  ) / Number(valueToRegister)
+                ? getValueToRegisterNativeDecimals(
+                    weiToDecimals(
+                      upgradePlans[Number(userLevelToUpgrade?.data?.level) ?? 0]
+                        ?.valueToUpgradeInUSD ?? 0,
+                      18,
+                      7
+                    ),
+                    nativePriceInUSD
+                  )
                 : 0
             }
             currentNetwork={currentNetwork}

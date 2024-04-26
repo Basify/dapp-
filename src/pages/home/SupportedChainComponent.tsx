@@ -11,15 +11,15 @@ import { PageWrapper } from '../../util/PageWrapper';
 export const SupportedChainComponent = () => {
   const supprtedChains = [
     {
-      name: 'Binance Smart Chain',
-      logo: '/token-icons/bnb.svg',
+      name: 'ETHEREUM',
+      logo: '/chainIcons/ethereumChainLogo.svg',
     },
   ];
 
   const supportedCurrency = [
     {
-      name: 'BNB',
-      logo: '/token-icons/bnb.svg',
+      name: 'ETH',
+      logo: '/chainIcons/ethereumChainLogo.svg',
     },
   ];
   return (

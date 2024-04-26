@@ -160,7 +160,7 @@ function UpgradeUI({
             <HStack fontStyle="italic">
               <Heading size="md">{valueInDecimals?.toFixed(5)}</Heading>
               <Heading fontWeight={500} size="md">
-                BNB
+              {currentNetwork?.native?.nativeCurrency?.symbol}
               </Heading>
             </HStack>
           </Tag>
@@ -170,11 +170,11 @@ function UpgradeUI({
               <Stack>
                 <Text>Your Balance</Text>
                 <Heading size="md" fontStyle="italic">
-                  {Number(userNativeBalance?.data?.formatted)?.toFixed(2)} BNB
+                  {Number(userNativeBalance?.data?.formatted)?.toFixed(2)} {currentNetwork?.native?.nativeCurrency?.symbol}
                 </Heading>
               </Stack>
               <Spacer />
-              <Image src={"./chainIcons/bscSmartChainLogo.svg"} alt="BNB Logo" boxSize={14}></Image>
+              <Image src={currentNetwork?.logo} alt="Chain Logo" boxSize={14}></Image>
             </HStack>
           </Tag>
 
@@ -216,8 +216,8 @@ function UpgradeUI({
               onConfirm={handleTransaction}
               transactionName="Upgrade"
               outCurrencyObject={{
-                logo: "./chainIcons/bscSmartChainLogo.svg",
-                symbol: 'BNB',
+                logo: currentNetwork?.logo,
+                symbol: currentNetwork?.native?.nativeCurrency?.symbol,
               }}
               outCurrencyValue={valueInDecimals}
               buttonProps={{
