@@ -3,11 +3,10 @@ import { HStack, Heading, VStack } from '@chakra-ui/react';
 // import { useNetwork } from 'wagmi';
 import { sepolia } from 'viem/chains';
 import { Counter } from '../../../components/Counter';
-import {
-  useGetWeeklyRewardToBeDistributed,
-} from '../../../hooks/ReferralHooks';
+import { useGetWeeklyRewardToBeDistributed } from '../../../hooks/ReferralHooks';
 import { PageWrapper } from '../../../util/PageWrapper';
 import { HeadingComponent } from '../../../util/Ui';
+import { weiToDecimals } from '../../../utils/utilFunctions';
 
 function WeeklyReward() {
   const weeklyRewardsToBeDistributed = useGetWeeklyRewardToBeDistributed(
@@ -23,9 +22,11 @@ function WeeklyReward() {
       <VStack>
         <HStack>
           <Heading>
-            {Number(
-              Number(weeklyRewardsToBeDistributed?.data?.rewardValue) / 10 ** 18
-            )?.toFixed(2)}
+            {weiToDecimals(
+              weeklyRewardsToBeDistributed?.data?.rewardValue,
+              18,
+              7
+            )}
           </Heading>
           <Heading color="orange.500">USDT</Heading>
         </HStack>

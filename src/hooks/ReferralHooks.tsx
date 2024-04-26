@@ -255,14 +255,14 @@ export const useGetWeeklyRewardToBeDistributed = (chainId?: number) => {
     chainId: chainId,
   });
 
-  const data = value?.data as unknown as bigint[] | undefined;
+  const data = value?.data as any[] | undefined;
 
   const object = {
     value: value,
     data: {
-      rewardValue: data?.[0],
-      remianingTime: data?.[1],
-      endTime: data?.[2],
+      rewardValue: data?.[0] as bigint,
+      remianingTime: data?.[1] as bigint,
+      endTime: data?.[2] as bigint,
     },
   };
 
