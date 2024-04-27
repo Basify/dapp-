@@ -26,11 +26,6 @@ const iconsObject = [
     icon: FaBlog,
     href: 'https://blog.basefy.network',
   },
-  {
-    label: 'Github',
-    icon: FaGithub,
-    href: 'https://github.com/Basify',
-  },
 ];
 
 const SocialMediaIconsButton = ({
