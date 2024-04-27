@@ -17,7 +17,7 @@ export const Tokenomics = () => {
   const chartBorderColor = useColorModeValue('white', '#1A202C');
   const data = {
     labels: [
-      '50% | Fair Launch',
+      '50% | Presale',
       '29% | Liquidity',
       '3% | Community Building',
       '5% | CeX',
