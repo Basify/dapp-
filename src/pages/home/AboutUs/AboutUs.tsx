@@ -8,6 +8,7 @@ export const AboutUs = () => {
     <PageWrapper
       style={{
         id: 'about-us',
+        px: 10,
       }}
     >
       <HeadingComponent
@@ -15,7 +16,7 @@ export const AboutUs = () => {
         gradientHeading="NETWORK"
       ></HeadingComponent>
 
-      <Heading size="md" maxW="5xl" fontWeight={300}>
+      <Heading size={['sm', 'md']} maxW="5xl" fontWeight={300}>
         <Text as="span" fontWeight={900}>
           {projectName}
         </Text>{' '}

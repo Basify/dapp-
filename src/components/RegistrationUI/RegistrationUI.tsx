@@ -274,7 +274,7 @@ function RegistrationUI({
                 logo: currentNetwork?.logo,
                 symbol: currentNetwork?.native?.nativeCurrency?.symbol,
               }}
-              outCurrencyValue={valueInDecimals}
+              outCurrencyValue={Number(valueInDecimals?.toFixed(5))}
               buttonProps={{
                 isLoading: result?.isLoading,
                 isDisabled: result?.isLoading,
