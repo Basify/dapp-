@@ -17,16 +17,16 @@ export const Tokenomics = () => {
   const chartBorderColor = useColorModeValue('white', '#1A202C');
   const data = {
     labels: [
-      '30% | Fair Launch',
-      '20% | Liquidity',
-      '25% | Community Building',
-      '10% | CeX',
-      '10% | Staking',
-      '5% | Marketing',
+      '50% | Fair Launch',
+      '29% | Liquidity',
+      '3% | Community Building',
+      '5% | CeX',
+      '5% | Staking',
+      '8% | Marketing',
     ],
     datasets: [
       {
-        data: [30, 20, 25, 10, 10, 5],
+        data: [50, 29, 3, 5, 5, 8],
         backgroundColor: [
           'rgba(255, 99, 132)',
           'rgba(54, 162, 235)',
