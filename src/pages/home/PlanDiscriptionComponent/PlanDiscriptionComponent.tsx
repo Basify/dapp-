@@ -79,7 +79,7 @@ const features = [
     heading: 'Weekly Rewards',
     icon: BsFillCalendar2HeartFill,
     iconColor: 'orange.500',
-    text: '4% of weekly total registration valuen to a random user.',
+    text: '4% of weekly total registration value to a random user.',
     value: 4,
   },
 ];
