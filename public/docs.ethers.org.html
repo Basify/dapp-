@@ -1,0 +1,260 @@
+
+<!-- saved from url=(0043)https://docs.ethers.org/v6/getting-started/ -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252"><link rel="stylesheet" href="./docs.ethers.org_files/style.css"><meta property="og:title" content="Documentation"><meta property="og:description" content="Documentation for ethers, a complete, tiny and simple Ethereum library."><meta property="og:image" content="/v6/static/social.jpg"></head><body><div class="sidebar"><div class="header"><a class="logo" href="https://docs.ethers.org/v6/"><div class="image"></div><div class="name">ethers</div><div class="version">6.12.0</div></a><div class="show-toc"><div class="icon-menu"></div><div class="icon-close"></div></div><div class="search"><form action="https://docs.ethers.org/v6/search/" method="GET"><input name="search" id="search"></form></div></div><div class="toc"><div class="title"><a href="https://docs.ethers.org/v6/">DOCUMENTATION</a></div><div data-depth="0" class="depth-0 current selected highlight"><a href="https://docs.ethers.org/v6/getting-started/">Getting Started</a></div><div data-depth="1" class="depth-1 highlight sub"><a href="https://docs.ethers.org/v6/getting-started/#starting-glossary">Some Common Terminology</a></div><div data-depth="1" class="depth-1 highlight sub"><a href="https://docs.ethers.org/v6/getting-started/#starting-connecting">Connecting to Ethereum</a></div><div data-depth="1" class="depth-1 highlight sub"><a href="https://docs.ethers.org/v6/getting-started/#starting-display">User Interaction</a></div><div data-depth="1" class="depth-1 highlight sub"><a href="https://docs.ethers.org/v6/getting-started/#starting-blockchain">Interacting with the Blockchain</a></div><div data-depth="1" class="depth-1 highlight sub"><a href="https://docs.ethers.org/v6/getting-started/#starting-contracts">Contracts</a></div><div data-depth="1" class="depth-1 highlight dedent sub"><a href="https://docs.ethers.org/v6/getting-started/#starting-signing">Signing Messages</a></div><div data-depth="0" class="depth-0"><a href="https://docs.ethers.org/v6/basics/">Ethereum Basics</a></div><div data-depth="0" class="depth-0"><a href="https://docs.ethers.org/v6/api/">Application Programming Interface</a></div><div data-depth="0" class="depth-0"><a href="https://docs.ethers.org/v6/cookbook/">Cookbook</a></div><div data-depth="0" class="depth-0"><a href="https://docs.ethers.org/v6/migrating/">Migrating from v5</a></div><div data-depth="0" class="depth-0"><a href="https://docs.ethers.org/v6/contributing/">Contributions and Hacking</a></div><div data-depth="0" class="depth-0"><a href="https://docs.ethers.org/v6/license/">License and Copyright</a></div></div><div class="alt-link"><a href="https://docs.ethers.org/v6/single-page/">Single Page</a></div></div><div class="content"><div class="breadcrumbs"><a href="https://docs.ethers.org/v6/">Documentation</a> <span class="symbol">»</span><i>Getting Started</i></div><div class="type-section show-links"><div class="title-section"><a class="link anchor" name="getting-started" href="https://docs.ethers.org/v6/getting-started/#getting-started">&nbsp;</a>Getting Started</div><div class="docs"><div><a name="cid_29"></a><p><a name="nid_428"></a>This is a very short introduction to Ethers, but covers many of the most common operations that developers require and provides a starting point for those newer to Ethereum.</p></div><div class="title-heading"><a name="cid_30"></a>Getting Ethers</div><div><p><a name="nid_430"></a>If using NPM, you must first install Ethers.</p></div><div class="title-code">installing via NPM</div><div class="notranslate code-block" translate="no"><span class="code-comment"># Install ethers</span>
+<span class="code-code">/home/ricmoo/test-ethers&gt; npm install ethers</span>
+</div><div><a name="cid_32"></a><p><a name="nid_445"></a><span class="style-normal">Everything in Ethers is exported from its root as well as on the <span class="notranslate style-code" translate="no">ethers</span> object. There are also <span class="notranslate style-code" translate="no">exports</span> in the <span class="notranslate style-code" translate="no">package.json</span> to facilitate more fine-grained importing.</span></p><p><a name="nid_446"></a>Generally this documentation will presume all exports from ethers have been imported in the code examples, but you may import the necessary objects in any way you wish.</p></div><div class="title-code">importing in Node.js</div><div class="notranslate code-block" translate="no"><span class="code-comment">// Import everything</span>
+<span class="code-code">import { ethers } from "ethers";</span>
+<span class="code-code"></span>
+<span class="code-comment">// Import just a few select items</span>
+<span class="code-code">import { BrowserProvider, parseUnits } from "ethers";</span>
+<span class="code-code"></span>
+<span class="code-comment">// Import from a specific export</span>
+<span class="code-code">import { HDNodeWallet } from "ethers/wallet";</span>
+</div><div class="title-code">importing ESM in a browser</div><div class="notranslate code-block" translate="no"><span class="code-code">&lt;script type="module"&gt;</span>
+<span class="code-code">  import { ethers } from "https://cdnjs.cloudflare.com/ajax/libs/ethers/6.7.0/ethers.min.js";</span>
+<span class="code-comment">  // Your code here...</span>
+<span class="code-code">&lt;/script&gt;</span>
+</div></div></div><div class="type-subsection show-links"><div class="title-subsection"><a class="link anchor" name="starting-glossary" href="https://docs.ethers.org/v6/getting-started/#starting-glossary">&nbsp;</a>Some Common Terminology</div><div class="docs"><div><a name="cid_35"></a><p><a name="nid_451"></a>To begin, it is useful to have a basic understanding of the types of objects available and what they are responsible for, at a high level.</p></div><div class="title-heading"><a name="cid_36"></a>Provider</div><div><p><a name="nid_456"></a><span class="style-normal">A <span class="notranslate style-link style-code " translate="no"><a class="link-lit" href="https://docs.ethers.org/v6/api/providers/#Provider">Provider</a></span> is a read-only connection to the blockchain, which allows querying the blockchain state, such as account, block or transaction details, querying event logs or evaluating read-only code using call.</span></p><p><a name="nid_465"></a><span class="style-normal">If you are coming from Web3.js, you are used to a <span class="style-bold">Provider</span> offering both read and write access. In Ethers, all write operations are further abstracted into another Object, the <span class="style-bold">Signer</span>.</span></p></div><div class="title-heading"><a name="cid_37"></a>Signer</div><div><p><a name="nid_474"></a><span class="style-normal">A <span class="notranslate style-link style-code " translate="no"><a class="link-lit" href="https://docs.ethers.org/v6/api/providers/#Signer">Signer</a></span> wraps all operations that interact with an account. An account generally has a private key located <span class="style-italic">somewhere</span>, which can be used to sign a variety of types of payloads.</span></p><p><a name="nid_478"></a><span class="style-normal">The private key may be located in memory (using a <span class="notranslate style-link style-code " translate="no"><a class="link-lit" href="https://docs.ethers.org/v6/api/wallet/#Wallet">Wallet</a></span>) or protected via some IPC layer, such as MetaMask which proxies interaction from a website to a browser plug-in, which keeps the private key out of the reach of the website and only permits interaction after requesting permission from the user and receiving authorization.</span></p></div><div class="title-heading"><a name="cid_38"></a>Transaction</div><div><p><a name="nid_480"></a>To make any state changes to the blockchain, a transaction is required, which requires a fee to be paid, where the fee covers the associated costs with executing the transaction (such as reading the disk and performing maths) and storing the updated information.</p><p><a name="nid_481"></a>If a transaction reverts, a fee must still be paid, since the validator still had to expend resources to try running the transaction to determine that it reverted and the details of its failure are still be recorded.</p><p><a name="nid_490"></a><span class="style-normal">Transactions include sending ether from one user to another, deploying a <span class="style-bold">Contract</span> or executing a state-changing operation against a <span class="style-bold">Contract</span>.</span></p></div><div class="title-heading"><a name="cid_39"></a>Contract</div><div><p><a name="nid_495"></a><span class="style-normal">A <span class="notranslate style-link style-code " translate="no"><a class="link-lit" href="https://docs.ethers.org/v6/api/contract/#Contract">Contract</a></span> is a program that has been deployed to the blockchain, which includes some code and has allocated storage which it can read from and write to.</span></p><p><a name="nid_502"></a><span class="style-normal">It may be read from when it is connected to a <span class="notranslate style-link style-code " translate="no"><a class="link-lit" href="https://docs.ethers.org/v6/api/providers/#Provider">Provider</a></span> or state-changing operations can be called when connected to a <span class="notranslate style-link style-code " translate="no"><a class="link-lit" href="https://docs.ethers.org/v6/api/providers/#Signer">Signer</a></span>.</span></p></div><div class="title-heading"><a name="cid_40"></a>Receipt</div><div><p><a name="nid_508"></a><span class="style-normal">Once a <span class="style-bold">Transaction</span> has been submitted to the blockchain, it is placed in the memory pool (mempool) until a validator decides to include it.</span></p><p><a name="nid_509"></a>A transaction's changes are only made once it has been included in the blockchain, at which time a receipt is available, which includes details about the transaction, such as which block it was included in, the actual fee paid, gas used, all the events that it emitted and whether it was successful or reverted.</p></div></div></div><div class="type-subsection show-links"><div class="title-subsection"><a class="link anchor" name="starting-connecting" href="https://docs.ethers.org/v6/getting-started/#starting-connecting">&nbsp;</a>Connecting to Ethereum</div><div class="docs"><div><a name="cid_41"></a><p><a name="nid_515"></a><span class="style-normal">This very first thing needed to begin interacting with the blockchain is connecting to it using a <span class="notranslate style-link style-code " translate="no"><a class="link-lit" href="https://docs.ethers.org/v6/api/providers/#Provider">Provider</a></span>.</span></p></div><div class="title-heading"><a name="cid_42"></a>MetaMask (and other injected providers)</div><div><p><a name="nid_524"></a><span class="style-normal">The quickest and easiest way to experiment and begin developing on Ethereum is to use <span class="style-link style-normal external"><a class="link-lit" href="https://metamask.io/" target="_blank">MetaMask</a></span>, which is a browser extension that injects objects into the <span class="notranslate style-code" translate="no">window</span>, providing:</span></p><p><a name="nid_533"></a></p><ul class="style-list"><li><span class="style-normal">read-only access to the Ethereum network (a <span class="notranslate style-link style-code " translate="no"><a class="link-lit" href="https://docs.ethers.org/v6/api/providers/#Provider">Provider</a></span>) </span></li><li><span class="style-normal">authenticated write access backed by a private key (a <span class="notranslate style-link style-code " translate="no"><a class="link-lit" href="https://docs.ethers.org/v6/api/providers/#Signer">Signer</a></span>) </span></li></ul><p></p><p><a name="nid_534"></a>When requesting access to the authenticated methods, such as sending a transaction or even requesting the private key address, MetaMask will show a pop-up to the user asking for permission.</p></div><div class="notranslate code-block" translate="no"><span class="code-code">let signer = null;</span>
+<span class="code-code"></span>
+<span class="code-code">let provider;</span>
+<span class="code-code">if (window.ethereum == null) {</span>
+<span class="code-code"></span>
+<span class="code-comment">    // If MetaMask is not installed, we use the default provider,</span>
+<span class="code-comment">    // which is backed by a variety of third-party services (such</span>
+<span class="code-comment">    // as INFURA). They do not have private keys installed,</span>
+<span class="code-comment">    // so they only have read-only access</span>
+<span class="code-code">    console.log("MetaMask not installed; using read-only defaults")</span>
+<span class="code-code">    provider = ethers.getDefaultProvider()</span>
+<span class="code-code"></span>
+<span class="code-code">} else {</span>
+<span class="code-code"></span>
+<span class="code-comment">    // Connect to the MetaMask EIP-1193 object. This is a standard</span>
+<span class="code-comment">    // protocol that allows Ethers access to make all read-only</span>
+<span class="code-comment">    // requests through MetaMask.</span>
+<span class="code-code">    provider = new ethers.BrowserProvider(window.ethereum)</span>
+<span class="code-code"></span>
+<span class="code-comment">    // It also provides an opportunity to request access to write</span>
+<span class="code-comment">    // operations, which will be performed by the private key</span>
+<span class="code-comment">    // that MetaMask manages for the user.</span>
+<span class="code-code">    signer = await provider.getSigner();</span>
+<span class="code-code">}</span>
+</div><div class="title-heading"><a name="cid_44"></a>Custom RPC Backend</div><div><p><a name="nid_549"></a><span class="style-normal">If you are running your own Ethereum node (e.g. <span class="style-link style-normal external"><a class="link-lit" href="https://geth.ethereum.org/" target="_blank">Geth</a></span>) or using a custom third-party service (e.g. <span class="style-link style-normal external"><a class="link-lit" href="https://infura.io/" target="_blank">INFURA</a></span>), you can use the <span class="notranslate style-link style-code " translate="no"><a class="link-lit" href="https://docs.ethers.org/v6/api/providers/jsonrpc/#JsonRpcProvider">JsonRpcProvider</a></span> directly, which communicates using the <span class="style-link style-normal external"><a class="link-lit" href="https://github.com/ethereum/wiki/wiki/JSON-RPC" target="_blank">link-jsonrpc</a></span> protocol.</span></p><p><a name="nid_553"></a><span class="style-normal">When using your own Ethereum node or a developer-base blockchain, such as Hardhat or Ganache, you can get access to the accounts with <span class="style-link missing-link">JsonRpcProvider-getSigner</span>.</span></p></div><div class="title-code">connecting to a JSON-RPC URL</div><div class="notranslate code-block" translate="no"><span class="code-comment">// If no %%url%% is provided, it connects to the default</span>
+<span class="code-comment">// http://localhost:8545, which most nodes use.</span>
+<span class="code-code">provider = new ethers.JsonRpcProvider(url)</span>
+<span class="code-code"></span>
+<span class="code-comment">// Get write access as an account by getting the signer</span>
+<span class="code-code">signer = await provider.getSigner()</span>
+</div></div></div><div class="type-subsection show-links"><div class="title-subsection"><a class="link anchor" name="starting-display" href="https://docs.ethers.org/v6/getting-started/#starting-display">&nbsp;</a>User Interaction</div><div class="docs"><div><a name="cid_46"></a><p><a name="nid_557"></a>All units in Ethereum tend to be integer values, since dealing with decimals and floating points can lead to imprecise and non-obvious results when performing mathematic operations.</p><p><a name="nid_558"></a>As a result, the internal units used (e.g. wei) which are suited for machine-readable purposes and maths are often very large and not easily human-readable.</p><p><a name="nid_567"></a><span class="style-normal">For example, imagine dealing with dollars and cents; you would show values like <span class="notranslate style-code" translate="no">"$2.56"</span>. In the blockchain world, we would keep all values as cents, so that would be <span class="notranslate style-code" translate="no">256</span> cents, internally.</span></p><p><a name="nid_576"></a><span class="style-normal">So, when accepting data that a user types, it must be converted from its decimal string representation (e.g. <span class="notranslate style-code" translate="no">"2.56"</span>) to its lowest-unit integer representation (e.g. <span class="notranslate style-code" translate="no">256</span>). And when displaying a value to a user the opposite operation is necessary.</span></p><p><a name="nid_593"></a><span class="style-normal">In Ethereum, <span class="style-italic">one ether</span> is equal to <span class="notranslate style-code" translate="no">10 ** 18</span> wei and <span class="style-italic">one gwei</span> is equal to <span class="notranslate style-code" translate="no">10 ** 9</span> wei, so the values get very large very quickly, so some convenience functions are provided to help convert between representations.</span></p></div><div class="notranslate code-block" translate="no"><span class="code-comment">// Convert user-provided strings in ether to wei for a value</span>
+<span class="code-code">eth = parseEther("1.0")</span>
+<span class="code-result">// 1000000000000000000n</span>
+<span class="code-code"></span>
+<span class="code-comment">// Convert user-provided strings in gwei to wei for max base fee</span>
+<span class="code-code">feePerGas = parseUnits("4.5", "gwei")</span>
+<span class="code-result">// 4500000000n</span>
+<span class="code-code"></span>
+<span class="code-comment">// Convert a value in wei to a string in ether to display in a UI</span>
+<span class="code-code">formatEther(eth)</span>
+<span class="code-result">// '1.0'</span>
+<span class="code-code"></span>
+<span class="code-comment">// Convert a value in wei to a string in gwei to display in a UI</span>
+<span class="code-code">formatUnits(feePerGas, "gwei")</span>
+<span class="code-result">// '4.5'</span>
+</div></div></div><div class="type-subsection show-links"><div class="title-subsection"><a class="link anchor" name="starting-blockchain" href="https://docs.ethers.org/v6/getting-started/#starting-blockchain">&nbsp;</a>Interacting with the Blockchain</div><div class="docs"><div><a name="cid_48"></a></div><div class="title-heading"><a name="cid_49"></a>Querying State</div><div><p><a name="nid_601"></a><span class="style-normal">Once you have a <span class="notranslate style-link style-code " translate="no"><a class="link-lit" href="https://docs.ethers.org/v6/api/providers/#Provider">Provider</a></span>, you have a read-only connection to the data on the blockchain. This can be used to query the current account state, fetch historic logs, look up contract code and so on.</span></p></div><div class="notranslate code-block" translate="no"><span class="code-comment">// Look up the current block number (i.e. height)</span>
+<span class="code-code">await provider.getBlockNumber()</span>
+<span class="code-result">// 19673013</span>
+<span class="code-code"></span>
+<span class="code-comment">// Get the current balance of an account (by address or ENS name)</span>
+<span class="code-code">balance = await provider.getBalance("ethers.eth")</span>
+<span class="code-result">// 4085267032476673080n</span>
+<span class="code-code"></span>
+<span class="code-comment">// Since the balance is in wei, you may wish to display it</span>
+<span class="code-comment">// in ether instead.</span>
+<span class="code-code">formatEther(balance)</span>
+<span class="code-result">// '4.08526703247667308'</span>
+<span class="code-code"></span>
+<span class="code-comment">// Get the next nonce required to send a transaction</span>
+<span class="code-code">await provider.getTransactionCount("ethers.eth")</span>
+<span class="code-result">// 2</span>
+</div><div class="title-heading"><a name="cid_51"></a>Sending Transactions</div><div><p><a name="nid_610"></a><span class="style-normal">To write to the blockchain you require access to a private key which controls some account. In most cases, those private keys are not accessible directly to your code, and instead you make requests via a <span class="notranslate style-link style-code " translate="no"><a class="link-lit" href="https://docs.ethers.org/v6/api/providers/#Signer">Signer</a></span>, which dispatches the request to a service (such as <span class="style-link style-normal external"><a class="link-lit" href="https://metamask.io/" target="_blank">MetaMask</a></span>) which provides strictly gated access and requires feedback to the user to approve or reject operations.</span></p></div><div class="notranslate code-block" translate="no"><span class="code-comment">// When sending a transaction, the value is in wei, so parseEther</span>
+<span class="code-comment">// converts ether to wei.</span>
+<span class="code-code">tx = await signer.sendTransaction({</span>
+<span class="code-code">  to: "ethers.eth",</span>
+<span class="code-code">  value: parseEther("1.0")</span>
+<span class="code-code">});</span>
+<span class="code-code"></span>
+<span class="code-comment">// Often you may wish to wait until the transaction is mined</span>
+<span class="code-code">receipt = await tx.wait();</span>
+</div></div></div><div class="type-subsection show-links"><div class="title-subsection"><a class="link anchor" name="starting-contracts" href="https://docs.ethers.org/v6/getting-started/#starting-contracts">&nbsp;</a>Contracts</div><div class="docs"><div><a name="cid_53"></a><p><a name="nid_618"></a><span class="style-normal">A <span class="style-bold">Contract</span> is a meta-class, which means that its definition its derived at run-time, based on the ABI it is passed, which then determined what methods and properties are available on it.</span></p></div><div class="title-heading"><a name="cid_54"></a>Application Binary Interface (ABI)</div><div><p><a name="nid_620"></a>Since all operations that occur on the blockchain must be encoded as binary data, we need a concise way to define how to convert between common objects (like strings and numbers) and its binary representation, as well as encode the ways to call and interpret the Contract.</p><p><a name="nid_624"></a><span class="style-normal">For any method, event or error you wish to use, you must include a <span class="notranslate style-link style-code " translate="no"><a class="link-lit" href="https://docs.ethers.org/v6/api/abi/abi-coder/#Fragment">Fragment</a></span> to inform Ethers how it should encode the request and decode the result.</span></p><p><a name="nid_625"></a>Any methods or events that are not needed can be safely excluded.</p><p><a name="nid_626"></a>There are several common formats available to describe an ABI. The Solidity compiler usually dumps a JSON representation but when typing an ABI by hand it is often easier (and more readable) to use the human-readable ABI, which is just the Solidity signature.</p></div><div class="title-code">simplified ERC-20 ABI</div><div class="notranslate code-block" translate="no"><span class="code-code">abi = [</span>
+<span class="code-code">  "function decimals() view returns (string)",</span>
+<span class="code-code">  "function symbol() view returns (string)",</span>
+<span class="code-code">  "function balanceOf(address addr) view returns (uint)"</span>
+<span class="code-code">]</span>
+<span class="code-code"></span>
+<span class="code-comment">// Create a contract</span>
+<span class="code-code">contract = new Contract("dai.tokens.ethers.eth", abi, provider)</span>
+</div><div class="title-heading"><a name="cid_56"></a><span class="style-normal">Read-only methods (i.e. <span class="notranslate style-code" translate="no">view</span> and <span class="notranslate style-code" translate="no">pure</span>)</span></div><div><p><a name="nid_629"></a>A read-only method is one which cannot change the state of the blockchain, but often provide a simple interface to get important data about a Contract.</p></div><div class="title-code">reading the DAI ERC-20 contract</div><div class="notranslate code-block" translate="no"><span class="code-comment">// The contract ABI (fragments we care about)</span>
+<span class="code-code">abi = [</span>
+<span class="code-code">  "function decimals() view returns (uint8)",</span>
+<span class="code-code">  "function symbol() view returns (string)",</span>
+<span class="code-code">  "function balanceOf(address a) view returns (uint)"</span>
+<span class="code-code">]</span>
+<span class="code-code"></span>
+<span class="code-comment">// Create a contract; connected to a Provider, so it may</span>
+<span class="code-comment">// only access read-only methods (like view and pure)</span>
+<span class="code-code">contract = new Contract("dai.tokens.ethers.eth", abi, provider)</span>
+<span class="code-code"></span>
+<span class="code-comment">// The symbol name for the token</span>
+<span class="code-code">sym = await contract.symbol()</span>
+<span class="code-result">// 'DAI'</span>
+<span class="code-code"></span>
+<span class="code-comment">// The number of decimals the token uses</span>
+<span class="code-code">decimals = await contract.decimals()</span>
+<span class="code-result">// 18n</span>
+<span class="code-code"></span>
+<span class="code-comment">// Read the token balance for an account</span>
+<span class="code-code">balance = await contract.balanceOf("ethers.eth")</span>
+<span class="code-result">// 4000000000000000000000n</span>
+<span class="code-code"></span>
+<span class="code-comment">// Format the balance for humans, such as in a UI</span>
+<span class="code-code">formatUnits(balance, decimals)</span>
+<span class="code-result">// '4000.0'</span>
+</div><div class="title-heading"><a name="cid_58"></a>State-changing Methods</div><div></div><div class="title-code">change state on an ERC-20 contract</div><div class="notranslate code-block" translate="no"><span class="code-code">abi = [</span>
+<span class="code-code">  "function transfer(address to, uint amount)"</span>
+<span class="code-code">]</span>
+<span class="code-code"></span>
+<span class="code-comment">// Connected to a Signer; can make state changing transactions,</span>
+<span class="code-comment">// which will cost the account ether</span>
+<span class="code-code">contract = new Contract("dai.tokens.ethers.eth", abi, signer)</span>
+<span class="code-code"></span>
+<span class="code-comment">// Send 1 DAI</span>
+<span class="code-code">amount = parseUnits("1.0", 18);</span>
+<span class="code-code"></span>
+<span class="code-comment">// Send the transaction</span>
+<span class="code-code">tx = await contract.transfer("ethers.eth", amount)</span>
+<span class="code-code"></span>
+<span class="code-comment">// Currently the transaction has been sent to the mempool,</span>
+<span class="code-comment">// but has not yet been included. So, we...</span>
+<span class="code-code"></span>
+<span class="code-comment">// ...wait for the transaction to be included.</span>
+<span class="code-code">await tx.wait()</span>
+</div><div class="title-code">forcing a call (simulation) of a state-changing method</div><div class="notranslate code-block" translate="no"><span class="code-code">abi = [</span>
+<span class="code-code">  "function transfer(address to, uint amount) returns (bool)"</span>
+<span class="code-code">]</span>
+<span class="code-code"></span>
+<span class="code-comment">// Connected to a Provider since we only require read access</span>
+<span class="code-code">contract = new Contract("dai.tokens.ethers.eth", abi, provider)</span>
+<span class="code-code"></span>
+<span class="code-code">amount = parseUnits("1.0", 18)</span>
+<span class="code-code"></span>
+<span class="code-comment">// There are many limitations to using a static call, but can</span>
+<span class="code-comment">// often be useful to preflight a transaction.</span>
+<span class="code-code">await contract.transfer.staticCall("ethers.eth", amount)</span>
+<span class="code-result">// true</span>
+<span class="code-code"></span>
+<span class="code-comment">// We can also simulate the transaction as another account</span>
+<span class="code-code">other = new VoidSigner("0x643aA0A61eADCC9Cc202D1915D942d35D005400C")</span>
+<span class="code-code">contractAsOther = contract.connect(other.connect(provider))</span>
+<span class="code-code">await contractAsOther.transfer.staticCall("ethers.eth", amount)</span>
+<span class="code-result">// true</span>
+</div><div class="title-heading"><a name="cid_61"></a>Listening to Events</div><div><p><a name="nid_643"></a>When adding event listeners for a named event, the event parameters are destructed for the listener.</p><p><a name="nid_647"></a><span class="style-normal">There is always one additional parameter passed to a listener, which is an <span class="notranslate style-link style-code " translate="no"><a class="link-lit" href="https://docs.ethers.org/v6/api/utils/events/#EventPayload">EventPayload</a></span>, which includes more information about the event including the filter and a method to remove that listener.</span></p></div><div class="title-code">listen for ERC-20 events</div><div class="notranslate code-block" translate="no"><span class="code-code">abi = [</span>
+<span class="code-code">  "event Transfer(address indexed from, address indexed to, uint amount)"</span>
+<span class="code-code">]</span>
+<span class="code-code"></span>
+<span class="code-comment">// Create a contract; connected to a Provider, so it may</span>
+<span class="code-comment">// only access read-only methods (like view and pure)</span>
+<span class="code-code">contract = new Contract("dai.tokens.ethers.eth", abi, provider)</span>
+<span class="code-code"></span>
+<span class="code-comment">// Begin listening for any Transfer event</span>
+<span class="code-code">contract.on("Transfer", (from, to, _amount, event) =&gt; {</span>
+<span class="code-code">  const amount = formatEther(_amount, 18)</span>
+<span class="code-code">  console.log(`${ from } =&gt; ${ to }: ${ amount }`);</span>
+<span class="code-code"></span>
+<span class="code-comment">  // The `event.log` has the entire EventLog</span>
+<span class="code-code"></span>
+<span class="code-comment">  // Optionally, stop listening</span>
+<span class="code-code">  event.removeListener();</span>
+<span class="code-code">});</span>
+<span class="code-code"></span>
+<span class="code-comment">// Same as above</span>
+<span class="code-code">contract.on(contract.filters.Transfer, (from, to, amount, event) =&gt; {</span>
+<span class="code-comment">  // See above</span>
+<span class="code-code">})</span>
+<span class="code-code"></span>
+<span class="code-comment">// Listen for any Transfer to "ethers.eth"</span>
+<span class="code-code">filter = contract.filters.Transfer("ethers.eth")</span>
+<span class="code-code">contract.on(filter, (from, to, amount, event) =&gt; {</span>
+<span class="code-comment">  // `to` will always be equal to the address of "ethers.eth"</span>
+<span class="code-code">});</span>
+<span class="code-code"></span>
+<span class="code-comment">// Listen for any event, whether it is present in the ABI</span>
+<span class="code-comment">// or not. Since unknown events can be picked up, the</span>
+<span class="code-comment">// parameters are not destructed.</span>
+<span class="code-code">contract.on("*", (event) =&gt; {</span>
+<span class="code-comment">  // The `event.log` has the entire EventLog</span>
+<span class="code-code">});</span>
+</div><div class="title-heading"><a name="cid_63"></a>Query Historic Events</div><div><p><a name="nid_650"></a>When querying within a large range of blocks, some backends may be prohibitively slow, may return an error or may truncate the results without any indication. This is at the discretion of each backend.</p></div><div class="title-code">query historic ERC-20 events</div><div class="notranslate code-block" translate="no"><span class="code-code">abi = [</span>
+<span class="code-code">  "event Transfer(address indexed from, address indexed to, uint amount)"</span>
+<span class="code-code">]</span>
+<span class="code-code"></span>
+<span class="code-comment">// Create a contract; connected to a Provider, so it may</span>
+<span class="code-comment">// only access read-only methods (like view and pure)</span>
+<span class="code-code">contract = new Contract("dai.tokens.ethers.eth", abi, provider)</span>
+<span class="code-code"></span>
+<span class="code-comment">// Query the last 100 blocks for any transfer</span>
+<span class="code-code">filter = contract.filters.Transfer</span>
+<span class="code-code">events = await contract.queryFilter(filter, -100)</span>
+<span class="code-code"></span>
+<span class="code-comment">// The events are a normal Array</span>
+<span class="code-code">events.length</span>
+<span class="code-result">// 105</span>
+<span class="code-code"></span>
+<span class="code-comment">// The first matching event</span>
+<span class="code-code">events[0]</span>
+<span class="code-result">// EventLog {</span>
+<span class="code-result">//   address: '0x6B175474E89094C44Da98b954EedeAC495271d0F',</span>
+<span class="code-result">//   args: Result(3) [</span>
+<span class="code-result">//     '0x168ea41c1F6Bb265555DD72a94ac35c108DFBd6d',</span>
+<span class="code-result">//     '0x9008D19f58AAbD9eD0D60971565AA8510560ab41',</span>
+<span class="code-result">//     100000000000000000000000n</span>
+<span class="code-result">//   ],</span>
+<span class="code-result">//   blockHash: '0xec12912e72268888168ff517935e9e0cc93ccd76d8953725abe597db01a4c878',</span>
+<span class="code-result">//   blockNumber: 19672921,</span>
+<span class="code-result">//   data: '0x00000000000000000000000000000000000000000000152d02c7e14af6800000',</span>
+<span class="code-result">//   fragment: EventFragment { ... },</span>
+<span class="code-result">//   index: 466,</span>
+<span class="code-result">//   interface: Interface { ... },</span>
+<span class="code-result">//   provider: InfuraProvider { ... },</span>
+<span class="code-result">//   removed: false,</span>
+<span class="code-result">//   topics: [</span>
+<span class="code-result">//     '0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef',</span>
+<span class="code-result">//     '0x000000000000000000000000168ea41c1f6bb265555dd72a94ac35c108dfbd6d',</span>
+<span class="code-result">//     '0x0000000000000000000000009008d19f58aabd9ed0d60971565aa8510560ab41'</span>
+<span class="code-result">//   ],</span>
+<span class="code-result">//   transactionHash: '0x960d68a8bc48c3531140707168fb23b507b2e61e143bdf7a6cf17eaeec2f28d6',</span>
+<span class="code-result">//   transactionIndex: 174</span>
+<span class="code-result">// }</span>
+<span class="code-code"></span>
+<span class="code-comment">// Query all time for any transfer to ethers.eth</span>
+<span class="code-code">filter = contract.filters.Transfer("ethers.eth")</span>
+<span class="code-code">events = await contract.queryFilter(filter)</span>
+<span class="code-code"></span>
+<span class="code-comment">// The first matching event</span>
+<span class="code-code">events[0]</span>
+<span class="code-result">// undefined</span>
+</div></div></div><div class="type-subsection show-links"><div class="title-subsection"><a class="link anchor" name="starting-signing" href="https://docs.ethers.org/v6/getting-started/#starting-signing">&nbsp;</a>Signing Messages</div><div class="docs"><div><a name="cid_65"></a><p><a name="nid_654"></a>A private key can do a lot more than just sign a transaction to authorize it. It can also be used to sign other forms of data, which are then able to be validated for other purposes.</p><p><a name="nid_659"></a><span class="style-normal">For example, signing <span class="style-bold">a message</span> can be used to prove ownership of an account which a website could use to authenticate a user and log them in.</span></p></div><div class="notranslate code-block" translate="no"><span class="code-comment">// Our signer; Signing messages does not require a Provider</span>
+<span class="code-code">signer = new Wallet(id("test"))</span>
+<span class="code-result">// Wallet {</span>
+<span class="code-result">//   address: '0xC08B5542D177ac6686946920409741463a15dDdB',</span>
+<span class="code-result">//   provider: null</span>
+<span class="code-result">// }</span>
+<span class="code-code"></span>
+<span class="code-code">message = "sign into ethers.org?"</span>
+<span class="code-code"></span>
+<span class="code-comment">// Signing the message</span>
+<span class="code-code">sig = await signer.signMessage(message);</span>
+<span class="code-result">// '0xefc6e1d2f21bb22b1013d05ecf1f06fd73cdcb34388111e4deec58605f3667061783be1297d8e3bee955d5b583bac7b26789b4a4c12042d59799ca75d98d23a51c'</span>
+<span class="code-code"></span>
+<span class="code-comment">// Validating a message; notice the address matches the signer</span>
+<span class="code-code">verifyMessage(message, sig)</span>
+<span class="code-result">// '0xC08B5542D177ac6686946920409741463a15dDdB'</span>
+</div><div><a name="cid_67"></a><p><a name="nid_662"></a>Many other more advanced protocols built on top of signed messages are used to allow a private key to authorize other users to transfer their tokens, allowing the transaction fees of the transfer to be paid by someone else.</p></div></div></div><div class="footer"><div class="nav"><div class="clearfix"></div><div class="previous"><a href="https://docs.ethers.org/v6/"><span class="arrow">&#8592;</span>&nbsp;Documentation</a></div><div class="next"><a href="https://docs.ethers.org/v6/basics/">Ethereum Basics<span class="arrow">&#8594;</span></a></div><div class="clearfix"></div></div><div class="copyright">The content of this site is licensed under the Creative Commons License. Generated on December 5, 2023, 9:51pm.</div></div></div><script type="module" src="./docs.ethers.org_files/script.js"></script></body></html>
