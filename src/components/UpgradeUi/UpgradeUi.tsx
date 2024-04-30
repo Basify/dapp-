@@ -23,7 +23,7 @@ import {
   useAccount,
   useBalance,
   useWaitForTransactionReceipt,
-  useWriteContract
+  useWriteContract,
 } from 'wagmi';
 import { CurrentNetworkInfo } from '../../constants/SupportedNetworkInfo';
 // import {
@@ -58,7 +58,7 @@ function UpgradeUI({
 
   const result = useWaitForTransactionReceipt({
     hash: data,
-  })
+  });
 
   // const {
   //   data,
@@ -90,7 +90,7 @@ function UpgradeUI({
     if (!errors.isUserHaveSufficientTokenBalance) {
       toast({
         title: 'Insufficient Balance.',
-        description: 'You dont have enough USDT to register.',
+        description: `You dont have enough ${currentNetwork?.native?.nativeCurrency?.symbol} to register.`,
         status: 'error',
         duration: 5000,
         isClosable: true,
@@ -160,7 +160,7 @@ function UpgradeUI({
             <HStack fontStyle="italic">
               <Heading size="md">{valueInDecimals?.toFixed(5)}</Heading>
               <Heading fontWeight={500} size="md">
-              {currentNetwork?.native?.nativeCurrency?.symbol}
+                {currentNetwork?.native?.nativeCurrency?.symbol}
               </Heading>
             </HStack>
           </Tag>
@@ -170,11 +170,16 @@ function UpgradeUI({
               <Stack>
                 <Text>Your Balance</Text>
                 <Heading size="md" fontStyle="italic">
-                  {Number(userNativeBalance?.data?.formatted)?.toFixed(2)} {currentNetwork?.native?.nativeCurrency?.symbol}
+                  {Number(userNativeBalance?.data?.formatted)?.toFixed(2)}{' '}
+                  {currentNetwork?.native?.nativeCurrency?.symbol}
                 </Heading>
               </Stack>
               <Spacer />
-              <Image src={currentNetwork?.logo} alt="Chain Logo" boxSize={14}></Image>
+              <Image
+                src={currentNetwork?.logo}
+                alt="Chain Logo"
+                boxSize={14}
+              ></Image>
             </HStack>
           </Tag>
 

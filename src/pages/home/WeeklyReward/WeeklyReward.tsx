@@ -10,14 +10,14 @@ import {
 import { PageWrapper } from '../../../util/PageWrapper';
 import { HeadingComponent } from '../../../util/Ui';
 import { nativeToUSD, weiToDecimals } from '../../../utils/utilFunctions';
-import { supportedNetworkInfo } from '../../../constants/SupportedNetworkInfo';
+import { defaultChainId, supportedNetworkInfo } from '../../../constants/SupportedNetworkInfo';
 
 function WeeklyReward() {
   const weeklyRewardsToBeDistributed = useGetWeeklyRewardToBeDistributed(
     sepolia?.id
   );
 
-  const currentNetwork = supportedNetworkInfo[sepolia?.id];
+  const currentNetwork = supportedNetworkInfo[defaultChainId];
 
   const nativePriceInUSD = useGetNativePriceInUSD(
     currentNetwork?.priceOracleAddress!

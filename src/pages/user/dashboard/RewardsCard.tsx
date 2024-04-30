@@ -18,11 +18,11 @@ export default function RewardsCard({
     },
     {
       name: 'Weekly Rewards',
-      value: Number(userRewardsObject?.data?.weeklyRewardInUSD) ?? 0,
+      value: weiToDecimals(userRewardsObject?.data?.weeklyRewardInUSD) ?? 0,
     },
     {
       name: 'Upgrade Rewards',
-      value: Number(userRewardsObject?.data?.upgradeRewardsInUSD) ?? 0,
+      value: weiToDecimals(userRewardsObject?.data?.upgradeRewardsInUSD) ?? 0,
     },
   ];
 
