@@ -16,9 +16,8 @@ import {
 } from '../../../constants/SupportedNetworkInfo';
 
 function WeeklyReward() {
-  const weeklyRewardsToBeDistributed = useGetWeeklyRewardToBeDistributed(
-    sepolia?.id
-  );
+  const weeklyRewardsToBeDistributed =
+    useGetWeeklyRewardToBeDistributed(defaultChainId);
 
   const currentNetwork = supportedNetworkInfo[defaultChainId];
 

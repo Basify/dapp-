@@ -1,23 +1,23 @@
-import { Button, Center, HStack, Square, Text, VStack } from "@chakra-ui/react";
-import { useEffect, useState } from "react";
+import { Button, Center, HStack, Square, Text, VStack } from '@chakra-ui/react';
+import { useEffect, useState } from 'react';
 
 export const Counter = ({
   timeinseconds,
-  size = "md",
+  size = 'md',
 }: {
   timeinseconds: number | undefined;
-  size?: "sm" | "md" | "lg" | "xl" | string;
+  size?: 'sm' | 'md' | 'lg' | 'xl' | string;
 }) => {
-  const buttonBgColor = "twitter.400";
+  const buttonBgColor = 'twitter.400';
   const counterSize =
-    size === "sm"
-      ? "50px"
-      : size === "md"
-      ? "60px"
-      : size === "lg"
-      ? "70px"
-      : size === "xl"
-      ? "80px"
+    size === 'sm'
+      ? '50px'
+      : size === 'md'
+      ? '60px'
+      : size === 'lg'
+      ? '70px'
+      : size === 'xl'
+      ? '80px'
       : size;
 
   const now = new Date().getTime();
@@ -79,7 +79,7 @@ export const Counter = ({
           justify="center"
           bgColor={buttonBgColor}
           color="white"
-          borderRadius={"25%"}
+          borderRadius={'25%'}
         >
           <Text>{time}</Text>
         </VStack>
