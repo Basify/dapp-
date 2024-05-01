@@ -1,4 +1,4 @@
-import { Chain, bsc, sepolia } from 'wagmi/chains';
+import { Chain, base, bsc, sepolia } from 'wagmi/chains';
 import { PriceOracleObject, ReferralV1ContractObject } from './ContractAddress';
 
 export const projectName = 'BASEFY NETWORK';
@@ -15,9 +15,7 @@ export const AddressZero: `0x${string}` =
 export const AddressDead: `0x${string}` =
   '0x000000000000000000000000000000000000dEaD';
 
-export const supportedCurrencyIcons = [
-  '/token-icons/usdt.svg',
-];
+export const supportedCurrencyIcons = ['/token-icons/usdt.svg'];
 
 export const defaultChainId = sepolia.id;
 
@@ -44,14 +42,6 @@ export interface SupportedNetworkInfo {
 }
 
 export const supportedNetworkInfo: SupportedNetworkInfo = {
-  [bsc.id]: {
-    referralContractAddress: ReferralV1ContractObject?.bscAddress,
-    referralContractInterface: ReferralV1ContractObject.abi,
-    priceOracleAddress: PriceOracleObject.bscAddress,
-    priceOracleInterface: PriceOracleObject.abi,
-    native: bsc,
-    logo: '/chainIcons/bscSmartChainLogo.svg',
-  },
   [sepolia.id]: {
     referralContractAddress: ReferralV1ContractObject?.sepolia,
     referralContractInterface: ReferralV1ContractObject.abi,
@@ -59,5 +49,13 @@ export const supportedNetworkInfo: SupportedNetworkInfo = {
     priceOracleInterface: PriceOracleObject.abi,
     native: sepolia,
     logo: '/chainIcons/ethereumChainLogo.svg',
+  },
+  [base.id]: {
+    referralContractAddress: ReferralV1ContractObject?.base,
+    referralContractInterface: ReferralV1ContractObject.abi,
+    priceOracleAddress: PriceOracleObject.base,
+    priceOracleInterface: PriceOracleObject.abi,
+    native: base,
+    logo: '/chainIcons/baseChainLogo.svg',
   },
 };

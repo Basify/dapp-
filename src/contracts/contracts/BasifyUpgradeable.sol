@@ -166,13 +166,13 @@ contract BasifyUpgradeable is
 
         _randomUserList.push(_defaultReferrer);
         _supportedChainLinkOracleAddress.push(
-            0x694AA1769357215DE4FAC081bf1f309aDC325306
+            0x71041dddad3595F9CEd3DcCFBe3D1F4b0a16Bb70
         );
         _supportedChainLinkOracleAddress.push(
-            0x5fb1616F78dA7aFC9FF79e0371741a747D2a7F22
+            0x71041dddad3595F9CEd3DcCFBe3D1F4b0a16Bb70
         );
-        _mappingOracle[0x694AA1769357215DE4FAC081bf1f309aDC325306] = true;
-        _mappingOracle[0x5fb1616F78dA7aFC9FF79e0371741a747D2a7F22] = true;
+        _mappingOracle[0x71041dddad3595F9CEd3DcCFBe3D1F4b0a16Bb70] = true;
+        _mappingOracle[0x71041dddad3595F9CEd3DcCFBe3D1F4b0a16Bb70] = true;
     }
 
     function updateUpgradePlans(
