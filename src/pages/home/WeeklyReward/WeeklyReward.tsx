@@ -10,7 +10,10 @@ import {
 import { PageWrapper } from '../../../util/PageWrapper';
 import { HeadingComponent } from '../../../util/Ui';
 import { nativeToUSD, weiToDecimals } from '../../../utils/utilFunctions';
-import { defaultChainId, supportedNetworkInfo } from '../../../constants/SupportedNetworkInfo';
+import {
+  defaultChainId,
+  supportedNetworkInfo,
+} from '../../../constants/SupportedNetworkInfo';
 
 function WeeklyReward() {
   const weeklyRewardsToBeDistributed = useGetWeeklyRewardToBeDistributed(
