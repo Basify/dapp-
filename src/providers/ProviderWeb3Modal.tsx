@@ -4,7 +4,7 @@ import { defaultWagmiConfig } from '@web3modal/wagmi/react/config';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactNode } from 'react';
 import { WagmiProvider } from 'wagmi';
-import { bsc, bscTestnet, sepolia } from 'wagmi/chains';
+import { base, bsc, bscTestnet, sepolia } from 'wagmi/chains';
 
 // 0. Setup queryClient
 const queryClient = new QueryClient();
@@ -20,7 +20,7 @@ const metadata = {
   icons: ['https://avatars.githubusercontent.com/u/37784886'],
 };
 
-export const chains = [bsc, sepolia] as const;
+export const chains = [base] as const;
 
 const config = defaultWagmiConfig({
   chains,
